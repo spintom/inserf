@@ -1,0 +1,22 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.hero-banner {
+  margin-top: 70px; /* Ajusta según la altura de tu header */
+}
+
+.logo-header {
+  height: 60px;
+}
+
+.logo-footer {
+  height: 40px;
+  opacity: 0.85;
+}
