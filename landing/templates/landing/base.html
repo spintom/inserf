@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>INSERF Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm fixed-top">
+    <div class="container d-flex justify-content-between align-items-center py-2">
+      <a href="/" class="d-flex align-items-center text-decoration-none">
+        <img src="{% static 'images/logo.png' %}" alt="Logo INSERF" height="40" class="logo-header me-2">
+        <span class="fs-5 fw-semibold text-dark">INSERF</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-grow-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4 mt-auto">
+    <div class="container">
+      <img src="{% static 'images/logo.png' %}" alt="Logo Footer" height="30" class="logo-footer mb-2">
+      <p class="mb-0">INSERF LTDA. © 2025 - Importadora de artículos de pesca</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 800,
+      offset: 120
+    });
+  </script>
+
+</body>
+</html>
