@@ -56,10 +56,6 @@ Pipfile.lock
 **/migrations/*.pyc
 !*/migrations/__init__.py
 
-# Compiled HTML/PDF files
-*.pdf
-*.html
-
 # System files
 .DS_Store
 Thumbs.db
