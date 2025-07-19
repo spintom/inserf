@@ -1,0 +1,27 @@
+{% extends 'dashboard/admin_base.html' %}
+
+{% block content %}
+  <section class="section">
+    <h1 class="title">Welcome, {{ request.user.first_name }}!</h1>
+    <div class="columns">
+      <div class="column">
+        <div class="box">
+          <p class="title is-5">Total Orders</p>
+          <p class="subtitle">123</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="box">
+          <p class="title is-5">Products in Stock</p>
+          <p class="subtitle">456</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="box">
+          <p class="title is-5">Clients</p>
+          <p class="subtitle">89</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
