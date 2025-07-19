@@ -1,0 +1,26 @@
+[
+  {
+    "model": "core.product",
+    "pk": 1,
+    "fields": {
+      "name": "Taladro Industrial",
+      "description": "Taladro de alta potencia para uso profesional.",
+      "brand": "Bosch",
+      "category": "Herramientas",
+      "image_url": "https://example.com/images/taladro.jpg",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 2,
+    "fields": {
+      "name": "Esmeril Angular",
+      "description": "Esmeril para corte y desbaste de metales.",
+      "brand": "Makita",
+      "category": "Herramientas",
+      "image_url": "https://example.com/images/esmeril.jpg",
+      "is_active": true
+    }
+  }
+]

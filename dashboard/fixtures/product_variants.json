@@ -1,0 +1,30 @@
+[
+  {
+    "model": "core.productvariant",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "color": "Azul",
+      "weight": 2.5,
+      "size": "Mediano",
+      "is_luminous": false,
+      "stock": 30,
+      "unit_price": "59990.00",
+      "bulk_price": "54990.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "color": "Negro",
+      "weight": 3.1,
+      "size": "Grande",
+      "is_luminous": false,
+      "stock": 20,
+      "unit_price": "74990.00",
+      "bulk_price": "69990.00"
+    }
+  }
+]

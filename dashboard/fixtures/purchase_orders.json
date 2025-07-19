@@ -1,0 +1,24 @@
+[
+  {
+    "model": "core.purchaseorder",
+    "pk": 1,
+    "fields": {
+      "client": 1,
+      "created_at": "2024-07-01T10:00:00Z",
+      "status": "pendiente",
+      "total_amount": "119980.00",
+      "notes": "Entrega urgente solicitada."
+    }
+  },
+  {
+    "model": "core.purchaseorder",
+    "pk": 2,
+    "fields": {
+      "client": 1,
+      "created_at": "2024-07-10T15:30:00Z",
+      "status": "completado",
+      "total_amount": "69990.00",
+      "notes": ""
+    }
+  }
+]

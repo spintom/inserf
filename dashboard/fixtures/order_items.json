@@ -1,0 +1,24 @@
+[
+  {
+    "model": "core.orderitem",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "variant": 1,
+      "quantity": 2,
+      "unit_price": "59990.00",
+      "subtotal": "119980.00"
+    }
+  },
+  {
+    "model": "core.orderitem",
+    "pk": 2,
+    "fields": {
+      "order": 2,
+      "variant": 2,
+      "quantity": 1,
+      "unit_price": "69990.00",
+      "subtotal": "69990.00"
+    }
+  }
+]

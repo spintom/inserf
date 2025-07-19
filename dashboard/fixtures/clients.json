@@ -1,0 +1,14 @@
+[
+  {
+    "model": "core.client",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "company_name": "Inserf S.A.",
+      "tax_id": "76812345-9",
+      "address": "Av. Apoquindo 1234, Las Condes, Santiago",
+      "phone": "+56 9 9876 5432",
+      "email": "contacto@inserf.cl"
+    }
+  }
+]
