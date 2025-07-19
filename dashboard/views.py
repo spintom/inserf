@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from core.models import PurchaseOrder, ProductVariant, Client
-from django.db.models import Sum
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Count
+from django.db.models import Sum
+from django.shortcuts import render
+
+from core.models import PurchaseOrder, ProductVariant, Client
+
 
 @login_required
 def admin_home(request):
@@ -30,3 +31,14 @@ def admin_home(request):
         "stock_by_category": stock_by_category,
     }
     return render(request, "dashboard/dashboard_home.html", context)
+
+
+def is_admin(user):
+    return user.is_authenticated and user.role == "admin"
+
+
+@login_required
+@user_passes_test(is_admin)
+def list_clients(request):
+    clients = Client.objects.select_related("user").all()
+    return render(request, "dashboard/client/admin_clients.html", {"clients": clients})
