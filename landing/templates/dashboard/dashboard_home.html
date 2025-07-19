@@ -1,0 +1,93 @@
+{% extends 'dashboard/admin_base.html' %}
+
+{% block content %}
+<section class="section">
+  <h1 class="title is-3 mb-5">Welcome, {{ request.user.first_name|default:"Admin" }}!</h1>
+
+  <div class="columns is-multiline">
+    <div class="column is-4">
+      <div class="box has-text-centered">
+        <p class="title is-5">Total Orders</p>
+        <p class="title is-3 has-text-primary">{{ total_orders }}</p>
+      </div>
+    </div>
+    <div class="column is-4">
+      <div class="box has-text-centered">
+        <p class="title is-5">Products in Stock</p>
+        <p class="title is-3 has-text-link">{{ total_products }}</p>
+      </div>
+    </div>
+    <div class="column is-4">
+      <div class="box has-text-centered">
+        <p class="title is-5">Clients</p>
+        <p class="title is-3 has-text-success">{{ total_clients }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns mt-6">
+    <div class="column is-half">
+      <div class="box">
+        <h3 class="title is-5 mb-3">Orders by Status</h3>
+        {% if orders_by_status %}
+          <canvas id="ordersChart" height="150"></canvas>
+        {% else %}
+          <p class="has-text-grey">No order data available.</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="column is-half">
+      <div class="box">
+        <h3 class="title is-5 mb-3">Stock by Category</h3>
+        {% if stock_by_category %}
+          <canvas id="stockChart" height="150"></canvas>
+        {% else %}
+          <p class="has-text-grey">No stock data available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Agrega Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  {% if orders_by_status %}
+  const ordersChart = document.getElementById('ordersChart').getContext('2d');
+  new Chart(ordersChart, {
+      type: 'pie',
+      data: {
+          labels: [{% for item in orders_by_status %}'{{ item.status }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+          datasets: [{
+              data: [{% for item in orders_by_status %}{{ item.count }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+              backgroundColor: ['#00d1b2', '#3273dc', '#ffdd57', '#ff3860'],
+          }]
+      }
+  });
+  {% endif %}
+
+  {% if stock_by_category %}
+  const stockChart = document.getElementById('stockChart').getContext('2d');
+  new Chart(stockChart, {
+      type: 'bar',
+      data: {
+          labels: [{% for item in stock_by_category %}'{{ item.product__category }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+          datasets: [{
+              label: 'Stock',
+              data: [{% for item in stock_by_category %}{{ item.total_stock }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+              backgroundColor: '#7957d5',
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+  {% endif %}
+</script>
+
+{% endblock %}

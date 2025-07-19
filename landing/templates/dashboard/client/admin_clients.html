@@ -1,0 +1,36 @@
+{% extends 'dashboard/admin_base.html' %}
+
+{% block content %}
+<section class="section">
+  <h1 class="title is-4 mb-4">Client List</h1>
+
+  <div class="table-container">
+    <table class="table is-striped is-fullwidth">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Tax ID</th>
+          <th>Client Email</th>
+          <th>Phone</th>
+          <th>Username</th>
+          <th>Name</th>
+          <th>User Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for client in clients %}
+        <tr>
+          <td>{{ client.company_name }}</td>
+          <td>{{ client.tax_id }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.phone }}</td>
+          <td>{{ client.user.username }}</td>
+          <td>{{ client.user.name }}</td>
+          <td>{{ client.user.email }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
