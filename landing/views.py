@@ -25,7 +25,7 @@ class CustomLoginView(LoginView):
 
 @login_required
 def my_orders(request):
-    if request.user.role != 'cliente':
+    if request.user.role != 'client':
         return redirect('/')
     orders = PurchaseOrder.objects.filter(client__user=request.user)
     return render(request, 'landing/my_orders.html', {'orders': orders})

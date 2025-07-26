@@ -34,8 +34,8 @@
 
                     {% if request.user.role == "admin" %}
                         <li><a class="dropdown-item" href="/admin-panel/">Admin Panel</a></li>
-                    {% elif request.user.role == "cliente" %}
-                        <li><a class="dropdown-item" href="/catalog/">Mis pedidos</a></li>
+                    {% elif request.user.role == "client" %}
+                        <li><a class="dropdown-item" href="{% url 'landing:my_orders' %}">Mis pedidos</a></li>
                     {% endif %}
 
                     <li><hr class="dropdown-divider"></li>
