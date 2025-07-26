@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>INSERF Portal</title>
+    <title>{% block title %}INSERF Portal{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap 5 -->
@@ -12,12 +12,12 @@
     <!-- AOS CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
+    <!-- Custom styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 <!-- Header -->
-<!-- Header con sesión -->
 <header class="bg-white shadow-sm fixed-top">
     <div class="container d-flex justify-content-between align-items-center py-2">
         <a href="/" class="d-flex align-items-center text-decoration-none">
@@ -31,24 +31,32 @@
                     {{ request.user.first_name|default:request.user.username }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="/admin-panel/">Admin Panel</a></li>
+
+                    {% if request.user.role == "admin" %}
+                        <li><a class="dropdown-item" href="/admin-panel/">Admin Panel</a></li>
+                    {% elif request.user.role == "cliente" %}
+                        <li><a class="dropdown-item" href="/catalog/">Mis pedidos</a></li>
+                    {% endif %}
+
+                    <li><hr class="dropdown-divider"></li>
                     <li>
-                        <hr class="dropdown-divider">
+                        <form action="{% url 'landing:logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                        </form>
                     </li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
                 </ul>
             </div>
         {% else %}
             <div>
-                <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a>
+                <a href="{% url 'landing:login' %}" class="btn btn-primary">Iniciar sesión</a>
             </div>
         {% endif %}
     </div>
 </header>
 
-
 <!-- Main content -->
-<main class="flex-grow-1">
+<main class="flex-grow-1 pt-5">
     {% block content %}{% endblock %}
 </main>
 
