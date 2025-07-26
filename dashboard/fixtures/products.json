@@ -3,11 +3,11 @@
     "model": "core.product",
     "pk": 1,
     "fields": {
-      "name": "Taladro Industrial",
+      "name": "BIGBACKER WAGSHAD",
       "description": "Taladro de alta potencia para uso profesional.",
-      "brand": "Bosch",
-      "category": "Herramientas",
-      "image_url": "https://example.com/images/taladro.jpg",
+      "brand": "Jackall",
+      "category": "soft baits",
+      "image_url": "https://www.jackall.co.jp/saltwater/wp-content/uploads/sites/3/2012/12/BB_WAGSHAD_BLPK.png",
       "is_active": true
     }
   },
@@ -15,11 +15,11 @@
     "model": "core.product",
     "pk": 2,
     "fields": {
-      "name": "Esmeril Angular",
+      "name": "PEKERING TIDE MAX",
       "description": "Esmeril para corte y desbaste de metales.",
-      "brand": "Makita",
-      "category": "Herramientas",
-      "image_url": "https://example.com/images/esmeril.jpg",
+      "brand": "Jackall",
+      "category": "soft baits",
+      "image_url": "https://www.jackall.co.jp/saltwater/wp-content/uploads/sites/3/2012/12/fe1a51b9ed4ee4e6216515ad761d7dd6-2.png",
       "is_active": true
     }
   }
