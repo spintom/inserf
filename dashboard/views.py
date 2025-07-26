@@ -1,13 +1,19 @@
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.db.models import Count
-from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
+from django.db.models import Count, Sum
+from django.http import HttpResponseForbidden
 from django.shortcuts import render
-
 from core.models import PurchaseOrder, ProductVariant, Client
+
+
+def is_admin(user):
+    return user.is_authenticated and user.role == "admin"
 
 
 @login_required
 def admin_home(request):
+    if not is_admin(request.user):
+        return HttpResponseForbidden("Acceso restringido a administradores.")
+
     total_orders = PurchaseOrder.objects.count()
     total_stock = ProductVariant.objects.aggregate(total=Sum("stock"))["total"] or 0
     total_clients = Client.objects.count()
@@ -33,12 +39,10 @@ def admin_home(request):
     return render(request, "dashboard/dashboard_home.html", context)
 
 
-def is_admin(user):
-    return user.is_authenticated and user.role == "admin"
-
-
 @login_required
-@user_passes_test(is_admin)
 def list_clients(request):
+    if not is_admin(request.user):
+        return HttpResponseForbidden("Acceso restringido a administradores.")
+
     clients = Client.objects.select_related("user").all()
     return render(request, "dashboard/client/admin_clients.html", {"clients": clients})
