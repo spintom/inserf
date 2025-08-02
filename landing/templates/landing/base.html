@@ -6,8 +6,11 @@
     <title>{% block title %}INSERF Portal{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- AOS CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -15,61 +18,123 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="has-navbar-fixed-top">
 
 <!-- Header -->
-<header class="bg-white shadow-sm fixed-top">
-    <div class="container d-flex justify-content-between align-items-center py-2">
-        <a href="/" class="d-flex align-items-center text-decoration-none">
-            <img src="{% static 'images/logo.png' %}" alt="Logo INSERF" height="40" class="logo-header me-2">
-        </a>
+<nav class="navbar is-fixed-top is-white has-shadow">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item">
+                <img src="{% static 'images/logo.png' %}" alt="Logo INSERF" class="logo-header">
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
 
-        {% if request.user.is_authenticated %}
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ request.user.first_name|default:request.user.username }}
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-
-                    {% if request.user.role == "admin" %}
-                        <li><a class="dropdown-item" href="/admin-panel/">Admin Panel</a></li>
-                    {% elif request.user.role == "client" %}
-                        <li><a class="dropdown-item" href="{% url 'landing:my_orders' %}">Mis pedidos</a></li>
-                    {% endif %}
-
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form action="{% url 'landing:logout' %}" method="post" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="dropdown-item">Cerrar sesión</button>
-                        </form>
-                    </li>
-                </ul>
+        <div id="navMenu" class="navbar-menu">
+            <div class="navbar-end">
+                {% if request.user.is_authenticated %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            {{ request.user.first_name|default:request.user.username }}
+                        </a>
+                        <div class="navbar-dropdown is-right">
+                            {% if request.user.role == "admin" %}
+                                <a class="navbar-item" href="/admin-panel/">
+                                    <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                                    <span>Admin Panel</span>
+                                </a>
+                            {% elif request.user.role == "client" %}
+                                <a class="navbar-item" href="{% url 'landing:my_orders' %}">
+                                    <span class="icon"><i class="fas fa-shopping-bag"></i></span>
+                                    <span>Mis pedidos</span>
+                                </a>
+                            {% endif %}
+                            <hr class="navbar-divider">
+                            <form action="{% url 'landing:logout' %}" method="post" class="navbar-item">
+                                {% csrf_token %}
+                                <button type="submit" class="button is-white is-fullwidth has-text-left">
+                                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                                    <span>Cerrar sesión</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="navbar-item">
+                        <a href="{% url 'landing:login' %}" class="button is-primary">
+                            <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
+                            <span>Iniciar sesión</span>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
-        {% else %}
-            <div>
-                <a href="{% url 'landing:login' %}" class="btn btn-primary">Iniciar sesión</a>
-            </div>
-        {% endif %}
+        </div>
     </div>
-</header>
+</nav>
 
 <!-- Main content -->
-<main class="flex-grow-1 pt-5">
+<main>
     {% block content %}{% endblock %}
 </main>
 
 <!-- Footer -->
-<footer class="bg-dark text-white text-center py-4 mt-auto">
+<footer class="footer has-background-dark has-text-white">
     <div class="container">
-        <img src="{% static 'images/logo2.png' %}" alt="Logo Footer" height="30" class="logo-footer mb-2">
-        <p class="mb-0">INSERF LTDA. © 2025 - Importadora de artículos de pesca</p>
+        <div class="columns is-multiline">
+            <div class="column is-4 has-text-centered-mobile">
+                <img src="{% static 'images/logo2.png' %}" alt="Logo Footer" class="logo-footer mb-3">
+                <p>INSERF LTDA. © 2025</p>
+                <p class="is-size-7 mt-2">Importadora de artículos de pesca</p>
+            </div>
+            
+            <div class="column is-4 has-text-centered">
+                <h3 class="title is-5 has-text-white mb-4">Enlaces rápidos</h3>
+                <ul>
+                    <li><a href="/" class="has-text-grey-lighter">Inicio</a></li>
+                    <li><a href="#" class="has-text-grey-lighter">Catálogo</a></li>
+                    <li><a href="#" class="has-text-grey-lighter">Sobre nosotros</a></li>
+                    <li><a href="#" class="has-text-grey-lighter">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="column is-4 has-text-centered-mobile has-text-right-tablet">
+                <h3 class="title is-5 has-text-white mb-4">Contáctanos</h3>
+                <p><i class="fas fa-envelope mr-2"></i> contacto@inserf.cl</p>
+                <p><i class="fas fa-phone mr-2"></i> +56 9 1234 5678</p>
+                <div class="mt-4">
+                    <a href="#" class="has-text-white mr-3"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="has-text-white mr-3"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="has-text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Navbar burger menu JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+                
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+            });
+        });
+    });
+</script>
 
 <!-- AOS JS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>

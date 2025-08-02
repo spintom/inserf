@@ -1,22 +1,91 @@
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1030;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.hero-banner {
-  margin-top: 70px; /* Ajusta según la altura de tu header */
-}
-
+/* Custom styles for Bulma */
 .logo-header {
-  height: 60px;
+  height: 80px;
+  max-height: 80px;
 }
 
 .logo-footer {
   height: 40px;
   opacity: 0.85;
+}
+
+/* Hero banner adjustments */
+.hero.is-fullheight-with-navbar {
+  min-height: calc(100vh - 3.25rem);
+}
+
+.hero .title, 
+.hero .subtitle {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Custom colors */
+.has-text-primary-dark {
+  color: #2160c4 !important;
+}
+
+.has-background-primary-light {
+  background-color: #eef6fc !important;
+}
+
+/* Custom spacing */
+.mt-6 {
+  margin-top: 3rem !important;
+}
+
+.mb-6 {
+  margin-bottom: 3rem !important;
+}
+
+.p-6 {
+  padding: 3rem !important;
+}
+
+/* Custom card styles */
+.card, .box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card:hover, .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Custom section spacing */
+section {
+  padding: 4rem 1.5rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  section {
+    padding: 2rem 1rem;
+  }
+  
+  .title.is-1 {
+    font-size: 2.5rem !important;
+  }
+  
+  .title.is-2 {
+    font-size: 2rem !important;
+  }
+  
+  .p-6 {
+    padding: 1.5rem !important;
+  }
+  
+  .hero-body {
+    padding: 2rem 1rem !important;
+  }
+}
+
+/* Button hover effects */
+.button {
+  transition: transform 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
 }
