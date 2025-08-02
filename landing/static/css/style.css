@@ -1,4 +1,37 @@
 /* Custom styles for Bulma */
+/* Sticky footer setup */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh; /* Use viewport height instead of percentage */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Specific class for sticky footer */
+.has-sticky-footer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  min-height: 50vh; /* Ensure main content has minimum height */
+}
+
+/* Ensure footer stays at bottom */
+.footer {
+  margin-top: auto;
+  width: 100%;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+  position: relative; /* Ensure proper stacking context */
+  z-index: 10; /* Ensure footer stays above other content */
+}
+
 .logo-header {
   height: 80px;
   max-height: 80px;
@@ -61,6 +94,7 @@ section {
 /* Fix for navbar overlap */
 main {
   padding-top: 80px; /* Match the logo height */
+  /* flex property already defined in sticky footer setup */
 }
 
 /* Tab content styling */
