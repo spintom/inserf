@@ -58,6 +58,32 @@ section {
   padding: 4rem 1.5rem;
 }
 
+/* Fix for navbar overlap */
+main {
+  padding-top: 80px; /* Match the logo height */
+}
+
+/* Tab content styling */
+.tab-content {
+  display: block;
+}
+
+.tab-content.is-hidden {
+  display: none;
+}
+
+/* Notification styling */
+.notification {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix for overlapping notes */
+.card-content .notification {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   section {

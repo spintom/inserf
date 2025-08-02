@@ -18,20 +18,20 @@
                 </h1>
                 
                 <div class="tabs is-boxed mb-5" data-aos="fade-up">
-                    <ul>
-                        <li class="is-active">
+                    <ul id="orderTabs">
+                        <li class="is-active" data-target="all-orders">
                             <a>
                                 <span class="icon"><i class="fas fa-list"></i></span>
                                 <span>Todos</span>
                             </a>
                         </li>
-                        <li>
+                        <li data-target="pending-orders">
                             <a>
                                 <span class="icon has-text-warning"><i class="fas fa-clock"></i></span>
                                 <span>Pendientes</span>
                             </a>
                         </li>
-                        <li>
+                        <li data-target="completed-orders">
                             <a>
                                 <span class="icon has-text-success"><i class="fas fa-check-circle"></i></span>
                                 <span>Completados</span>
@@ -40,114 +40,358 @@
                     </ul>
                 </div>
 
-        {% if orders %}
-            {% for order in orders %}
-            <div class="card mb-5 has-shadow" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
-                <header class="card-header has-background-primary-dark">
-                    <div class="card-header-title has-text-white is-justify-content-space-between">
-                        <div class="is-flex is-align-items-center">
-                            <span class="icon mr-2">
-                                <i class="fas fa-shopping-cart"></i>
-                            </span>
-                            <span>Orden #{{ order.id }}</span>
-                            <span class="ml-3 is-size-7">
-                                <i class="fas fa-calendar-alt mr-1"></i>
-                                {{ order.created_at|date:"d/m/Y H:i" }}
-                            </span>
-                        </div>
-                        <span class="tag is-medium 
-                            {% if order.status == 'pendiente' %}is-warning
-                            {% elif order.status == 'completado' %}is-success
-                            {% else %}is-light
-                            {% endif %}">
-                            <span class="icon mr-1">
-                                {% if order.status == 'pendiente' %}
-                                    <i class="fas fa-clock"></i>
-                                {% elif order.status == 'completado' %}
-                                    <i class="fas fa-check-circle"></i>
-                                {% else %}
-                                    <i class="fas fa-info-circle"></i>
-                                {% endif %}
-                            </span>
-                            {{ order.status|capfirst }}
-                        </span>
-                    </div>
-                </header>
-                <div class="card-content">
-                    {% if order.notes %}
-                        <div class="notification is-light is-primary mb-5">
-                            <p class="is-size-6">
-                                <span class="icon mr-2">
-                                    <i class="fas fa-sticky-note"></i>
+                <!-- Tab content for all orders -->
+                <div id="all-orders" class="tab-content is-active">
+                    {% for order in orders %}
+                    <div class="card mb-5 has-shadow" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                        <header class="card-header has-background-primary-dark">
+                            <div class="card-header-title has-text-white is-justify-content-space-between">
+                                <div class="is-flex is-align-items-center">
+                                    <span class="icon mr-2">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </span>
+                                    <span>Orden #{{ order.id }}</span>
+                                    <span class="ml-3 is-size-7">
+                                        <i class="fas fa-calendar-alt mr-1"></i>
+                                        {{ order.created_at|date:"d/m/Y H:i" }}
+                                    </span>
+                                </div>
+                                <span class="tag is-medium 
+                                    {% if order.status == 'pendiente' %}is-warning
+                                    {% elif order.status == 'completado' %}is-success
+                                    {% else %}is-light
+                                    {% endif %}">
+                                    <span class="icon mr-1">
+                                        {% if order.status == 'pendiente' %}
+                                            <i class="fas fa-clock"></i>
+                                        {% elif order.status == 'completado' %}
+                                            <i class="fas fa-check-circle"></i>
+                                        {% else %}
+                                            <i class="fas fa-info-circle"></i>
+                                        {% endif %}
+                                    </span>
+                                    {{ order.status|capfirst }}
                                 </span>
-                                <strong>Notas:</strong> {{ order.notes }}
-                            </p>
+                            </div>
+                        </header>
+                        <div class="card-content">
+                            {% if order.notes %}
+                                <div class="notification is-light is-primary mt-6">
+                                    <p class="is-size-6">
+                                        <span class="icon mr-2">
+                                            <i class="fas fa-sticky-note"></i>
+                                        </span>
+                                        <strong>Notas:</strong> {{ order.notes }}
+                                    </p>
+                                </div>
+                            {% endif %}
+
+                            <div class="table-container" data-aos="fade-up" data-aos-delay="200">
+                                <table class="table is-fullwidth is-striped is-hoverable mt-6">
+                                    <thead>
+                                        <tr class="has-background-primary-light">
+                                            <th class="has-text-primary">Producto</th>
+                                            <th class="has-text-primary">Variante</th>
+                                            <th class="has-text-primary">Precio unitario</th>
+                                            <th class="has-text-primary">Cantidad</th>
+                                            <th class="has-text-primary">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in order.items.all %}
+                                        <tr>
+                                            <td>
+                                                <div class="is-flex is-align-items-center">
+                                                    <figure class="image is-64x64 mr-3">
+                                                        <img src="{{ item.variant.product.image_url }}" alt="Imagen" class="is-rounded">
+                                                    </figure>
+                                                    <div>
+                                                        <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
+                                                        <p class="has-text-grey is-size-7">{{ item.variant.product.brand }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ item.variant.color }} / {{ item.variant.size }}</td>
+                                            <td>${{ item.unit_price|floatformat:0 }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="has-text-right mt-5" data-aos="fade-left" data-aos-delay="300">
+                                <p class="title is-4">Total: <span class="has-text-primary">${{ order.total_amount|floatformat:0 }}</span></p>
+                            </div>
                         </div>
+                    </div>
+                    {% endfor %}
+                    
+                    {% if not orders %}
+                    <div class="notification is-info is-light" data-aos="fade-up">
+                        <div class="columns is-vcentered">
+                            <div class="column is-2 has-text-centered">
+                                <span class="icon is-large">
+                                    <i class="fas fa-shopping-cart fa-3x has-text-info"></i>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <h3 class="title is-4 mb-2">Aún no has realizado ningún pedido</h3>
+                                <p class="subtitle is-6">Cuando realices tu primer pedido, aparecerá en esta sección para que puedas hacer seguimiento.</p>
+                                <a href="/" class="button is-info mt-3">
+                                    <span class="icon">
+                                        <i class="fas fa-home"></i>
+                                    </span>
+                                    <span>Volver al inicio</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     {% endif %}
-
-                    <div class="table-container" data-aos="fade-up" data-aos-delay="200">
-                        <table class="table is-fullwidth is-striped is-hoverable">
-                            <thead>
-                                <tr class="has-background-primary-light">
-                                    <th class="has-text-primary">Producto</th>
-                                    <th class="has-text-primary">Variante</th>
-                                    <th class="has-text-primary">Precio unitario</th>
-                                    <th class="has-text-primary">Cantidad</th>
-                                    <th class="has-text-primary">Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in order.items.all %}
-                                <tr>
-                                    <td>
-                                        <div class="is-flex is-align-items-center">
-                                            <figure class="image is-64x64 mr-3">
-                                                <img src="{{ item.variant.product.image_url }}" alt="Imagen" class="is-rounded">
-                                            </figure>
-                                            <div>
-                                                <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
-                                                <p class="has-text-grey is-size-7">{{ item.variant.product.brand }}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{{ item.variant.color }} / {{ item.variant.size }}</td>
-                                    <td>${{ item.unit_price|floatformat:0 }}</td>
-                                    <td>{{ item.quantity }}</td>
-                                    <td class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="has-text-right mt-5" data-aos="fade-left" data-aos-delay="300">
-                        <p class="title is-4">Total: <span class="has-text-primary">${{ order.total_amount|floatformat:0 }}</span></p>
-                    </div>
                 </div>
-            </div>
-        {% else %}
-            <div class="notification is-info is-light" data-aos="fade-up">
-                <div class="columns is-vcentered">
-                    <div class="column is-2 has-text-centered">
-                        <span class="icon is-large">
-                            <i class="fas fa-shopping-cart fa-3x has-text-info"></i>
-                        </span>
+                
+                <!-- Tab content for pending orders -->
+                <div id="pending-orders" class="tab-content is-hidden">
+                    {% for order in orders %}
+                    {% if order.status == 'pendiente' %}
+                    <div class="card mb-5 has-shadow" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                        <header class="card-header has-background-primary-dark">
+                            <div class="card-header-title has-text-white is-justify-content-space-between">
+                                <div class="is-flex is-align-items-center">
+                                    <span class="icon mr-2">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </span>
+                                    <span>Orden #{{ order.id }}</span>
+                                    <span class="ml-3 is-size-7">
+                                        <i class="fas fa-calendar-alt mr-1"></i>
+                                        {{ order.created_at|date:"d/m/Y H:i" }}
+                                    </span>
+                                </div>
+                                <span class="tag is-medium is-warning">
+                                    <span class="icon mr-1">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                    {{ order.status|capfirst }}
+                                </span>
+                            </div>
+                        </header>
+                        <div class="card-content">
+                            {% if order.notes %}
+                                <div class="notification is-light is-primary mt-6">
+                                    <p class="is-size-6">
+                                        <span class="icon mr-2">
+                                            <i class="fas fa-sticky-note"></i>
+                                        </span>
+                                        <strong>Notas:</strong> {{ order.notes }}
+                                    </p>
+                                </div>
+                            {% endif %}
+
+                            <div class="table-container" data-aos="fade-up" data-aos-delay="200">
+                                <table class="table is-fullwidth is-striped is-hoverable mt-6">
+                                    <thead>
+                                        <tr class="has-background-primary-light">
+                                            <th class="has-text-primary">Producto</th>
+                                            <th class="has-text-primary">Variante</th>
+                                            <th class="has-text-primary">Precio unitario</th>
+                                            <th class="has-text-primary">Cantidad</th>
+                                            <th class="has-text-primary">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in order.items.all %}
+                                        <tr>
+                                            <td>
+                                                <div class="is-flex is-align-items-center">
+                                                    <figure class="image is-64x64 mr-3">
+                                                        <img src="{{ item.variant.product.image_url }}" alt="Imagen" class="is-rounded">
+                                                    </figure>
+                                                    <div>
+                                                        <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
+                                                        <p class="has-text-grey is-size-7">{{ item.variant.product.brand }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ item.variant.color }} / {{ item.variant.size }}</td>
+                                            <td>${{ item.unit_price|floatformat:0 }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="has-text-right mt-5" data-aos="fade-left" data-aos-delay="300">
+                                <p class="title is-4">Total: <span class="has-text-primary">${{ order.total_amount|floatformat:0 }}</span></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="column">
-                        <h3 class="title is-4 mb-2">Aún no has realizado ningún pedido</h3>
-                        <p class="subtitle is-6">Cuando realices tu primer pedido, aparecerá en esta sección para que puedas hacer seguimiento.</p>
-                        <a href="/" class="button is-info mt-3">
-                            <span class="icon">
-                                <i class="fas fa-home"></i>
-                            </span>
-                            <span>Volver al inicio</span>
-                        </a>
+                    {% endif %}
+                    {% endfor %}
+                    
+                    {% if not orders|dictsort:"status"|first == "pendiente" %}
+                    <div class="notification is-info is-light" data-aos="fade-up">
+                        <div class="columns is-vcentered">
+                            <div class="column is-2 has-text-centered">
+                                <span class="icon is-large">
+                                    <i class="fas fa-check-circle fa-3x has-text-info"></i>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <h3 class="title is-4 mb-2">No tienes pedidos pendientes</h3>
+                                <p class="subtitle is-6">Todos tus pedidos han sido completados.</p>
+                            </div>
+                        </div>
                     </div>
+                    {% endif %}
                 </div>
-            </div>
-        {% endif %}
+                
+                <!-- Tab content for completed orders -->
+                <div id="completed-orders" class="tab-content is-hidden">
+                    {% for order in orders %}
+                    {% if order.status == 'completado' %}
+                    <div class="card mb-5 has-shadow" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                        <header class="card-header has-background-primary-dark">
+                            <div class="card-header-title has-text-white is-justify-content-space-between">
+                                <div class="is-flex is-align-items-center">
+                                    <span class="icon mr-2">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </span>
+                                    <span>Orden #{{ order.id }}</span>
+                                    <span class="ml-3 is-size-7">
+                                        <i class="fas fa-calendar-alt mr-1"></i>
+                                        {{ order.created_at|date:"d/m/Y H:i" }}
+                                    </span>
+                                </div>
+                                <span class="tag is-medium is-success">
+                                    <span class="icon mr-1">
+                                        <i class="fas fa-check-circle"></i>
+                                    </span>
+                                    {{ order.status|capfirst }}
+                                </span>
+                            </div>
+                        </header>
+                        <div class="card-content">
+                            {% if order.notes %}
+                                <div class="notification is-light is-primary mt-6">
+                                    <p class="is-size-6">
+                                        <span class="icon mr-2">
+                                            <i class="fas fa-sticky-note"></i>
+                                        </span>
+                                        <strong>Notas:</strong> {{ order.notes }}
+                                    </p>
+                                </div>
+                            {% endif %}
+
+                            <div class="table-container" data-aos="fade-up" data-aos-delay="200">
+                                <table class="table is-fullwidth is-striped is-hoverable mt-6">
+                                    <thead>
+                                        <tr class="has-background-primary-light">
+                                            <th class="has-text-primary">Producto</th>
+                                            <th class="has-text-primary">Variante</th>
+                                            <th class="has-text-primary">Precio unitario</th>
+                                            <th class="has-text-primary">Cantidad</th>
+                                            <th class="has-text-primary">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in order.items.all %}
+                                        <tr>
+                                            <td>
+                                                <div class="is-flex is-align-items-center">
+                                                    <figure class="image is-64x64 mr-3">
+                                                        <img src="{{ item.variant.product.image_url }}" alt="Imagen" class="is-rounded">
+                                                    </figure>
+                                                    <div>
+                                                        <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
+                                                        <p class="has-text-grey is-size-7">{{ item.variant.product.brand }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ item.variant.color }} / {{ item.variant.size }}</td>
+                                            <td>${{ item.unit_price|floatformat:0 }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="has-text-right mt-5" data-aos="fade-left" data-aos-delay="300">
+                                <p class="title is-4">Total: <span class="has-text-primary">${{ order.total_amount|floatformat:0 }}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    
+                    {% if not orders|dictsort:"status"|first == "completado" %}
+                    <div class="notification is-info is-light" data-aos="fade-up">
+                        <div class="columns is-vcentered">
+                            <div class="column is-2 has-text-centered">
+                                <span class="icon is-large">
+                                    <i class="fas fa-hourglass-half fa-3x has-text-info"></i>
+                                </span>
+                            </div>
+                            <div class="column">
+                                <h3 class="title is-4 mb-2">No tienes pedidos completados</h3>
+                                <p class="subtitle is-6">Tus pedidos aún están en proceso.</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Tab functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('#orderTabs li');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    // Initialize AOS only once
+    AOS.init({
+        once: true,
+        disable: 'mobile',
+        duration: 800,
+        offset: 120
+    });
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('is-active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('is-active');
+            
+            // Hide all tab contents
+            tabContents.forEach(content => {
+                content.classList.add('is-hidden');
+                content.classList.remove('is-active');
+            });
+            
+            // Show the selected tab content
+            const targetId = tab.getAttribute('data-target');
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.remove('is-hidden');
+                targetContent.classList.add('is-active');
+                
+                // Remove AOS animation classes from notifications to prevent them from reappearing
+                const notifications = targetContent.querySelectorAll('.notification[data-aos]');
+                notifications.forEach(notification => {
+                    notification.classList.remove('aos-init', 'aos-animate');
+                });
+            }
+        });
+    });
+});
+</script>
 {% endblock %}
