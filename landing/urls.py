@@ -2,7 +2,8 @@ from django.urls import path
 from django.contrib.auth.views import LogoutView
 from .views import (
     CustomLoginView, home, my_orders, catalog,
-    cart, add_to_cart, update_cart_item, remove_cart_item
+    cart, add_to_cart, update_cart_item, remove_cart_item,
+    checkout, process_checkout, order_confirmation
 )
 
 app_name = "landing"
@@ -19,4 +20,9 @@ urlpatterns = [
     path("cart/add/", add_to_cart, name="add_to_cart"),
     path("cart/update/", update_cart_item, name="update_cart_item"),
     path("cart/remove/", remove_cart_item, name="remove_cart_item"),
+    
+    # Checkout URLs
+    path("checkout/", checkout, name="checkout"),
+    path("checkout/process/", process_checkout, name="process_checkout"),
+    path("order-confirmation/<int:order_id>/", order_confirmation, name="order_confirmation"),
 ]

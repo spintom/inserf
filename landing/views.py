@@ -3,9 +3,10 @@ from django.contrib.auth.views import LoginView
 from django.http import JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
+from django.db import transaction
 import json
 
-from core.models import PurchaseOrder, Product, ProductVariant, Client, Cart, CartItem
+from core.models import PurchaseOrder, Product, ProductVariant, Client, Cart, CartItem, OrderItem
 
 
 def home(request):
@@ -226,3 +227,113 @@ def remove_cart_item(request):
         
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+
+@login_required
+def checkout(request):
+    if request.user.role != 'client':
+        return redirect('/')
+    
+    # Get client's cart
+    client = get_object_or_404(Client, user=request.user)
+    cart = Cart.objects.filter(client=client).first()
+    
+    # If cart is empty, redirect to cart page
+    if not cart or not cart.items.exists():
+        return redirect('landing:cart')
+    
+    # Get cart items with related objects
+    cart_items = cart.items.select_related('variant', 'variant__product').all()
+    
+    # Calculate total
+    total = 0
+    for item in cart_items:
+        item.subtotal = item.variant.unit_price * item.quantity
+        total += item.subtotal
+    
+    context = {
+        'client': client,
+        'cart_items': cart_items,
+        'total': total,
+        'cart_count': len(cart_items)
+    }
+    
+    return render(request, 'landing/checkout.html', context)
+
+
+@login_required
+def process_checkout(request):
+    if request.method != 'POST' or request.user.role != 'client':
+        return redirect('landing:cart')
+    
+    # Get client's cart
+    client = get_object_or_404(Client, user=request.user)
+    cart = get_object_or_404(Cart, client=client)
+    
+    # If cart is empty, redirect to cart page
+    if not cart.items.exists():
+        return redirect('landing:cart')
+    
+    # Get form data
+    company_name = request.POST.get('company_name')
+    tax_id = request.POST.get('tax_id')
+    address = request.POST.get('address')
+    phone = request.POST.get('phone')
+    email = request.POST.get('email')
+    payment_method = request.POST.get('payment_method')
+    notes = request.POST.get('notes', '')
+    
+    # Update client information if changed
+    if (company_name != client.company_name or tax_id != client.tax_id or 
+        address != client.address or phone != client.phone or email != client.email):
+        client.company_name = company_name
+        client.tax_id = tax_id
+        client.address = address
+        client.phone = phone
+        client.email = email
+        client.save()
+    
+    # Calculate total
+    cart_items = cart.items.select_related('variant').all()
+    total = sum(item.variant.unit_price * item.quantity for item in cart_items)
+    
+    # Create order with transaction to ensure data integrity
+    with transaction.atomic():
+        # Create purchase order
+        order = PurchaseOrder.objects.create(
+            client=client,
+            status='pendiente',
+            total_amount=total,
+            notes=notes
+        )
+        
+        # Create order items
+        for cart_item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                variant=cart_item.variant,
+                quantity=cart_item.quantity,
+                unit_price=cart_item.variant.unit_price,
+                subtotal=cart_item.variant.unit_price * cart_item.quantity
+            )
+        
+        # Clear cart
+        cart.items.all().delete()
+    
+    # Redirect to confirmation page
+    return redirect('landing:order_confirmation', order_id=order.id)
+
+
+@login_required
+def order_confirmation(request, order_id):
+    if request.user.role != 'client':
+        return redirect('/')
+    
+    # Get order
+    order = get_object_or_404(PurchaseOrder, id=order_id, client__user=request.user)
+    
+    context = {
+        'order': order
+    }
+    
+    return render(request, 'landing/order_confirmation.html', context)
