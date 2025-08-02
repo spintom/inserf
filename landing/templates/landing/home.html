@@ -13,12 +13,21 @@
       <p class="subtitle is-4 has-text-white mt-3">
         Distribuidores oficiales de <strong>Jackall</strong> en Chile.
       </p>
-      <a href="#" class="button is-primary is-large is-rounded mt-5">
-        <span class="icon">
-          <i class="fas fa-fish"></i>
-        </span>
-        <span>Ingresar al catálogo</span>
-      </a>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'landing:catalog' %}" class="button is-primary is-large is-rounded mt-5">
+          <span class="icon">
+            <i class="fas fa-fish"></i>
+          </span>
+          <span>Ingresar al catálogo</span>
+        </a>
+      {% else %}
+        <a href="{% url 'landing:login' %}" class="button is-primary is-large is-rounded mt-5">
+          <span class="icon">
+            <i class="fas fa-sign-in-alt"></i>
+          </span>
+          <span>Iniciar sesión para ver catálogo</span>
+        </a>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -101,10 +110,17 @@
     </div>
     
     <div class="has-text-centered mt-6">
-      <a href="#" class="button is-primary">
-        <span class="icon"><i class="fas fa-th-large"></i></span>
-        <span>Ver catálogo completo</span>
-      </a>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'landing:catalog' %}" class="button is-primary">
+          <span class="icon"><i class="fas fa-th-large"></i></span>
+          <span>Ver catálogo completo</span>
+        </a>
+      {% else %}
+        <a href="{% url 'landing:login' %}" class="button is-primary">
+          <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
+          <span>Iniciar sesión para ver catálogo</span>
+        </a>
+      {% endif %}
     </div>
   </div>
 </section>
