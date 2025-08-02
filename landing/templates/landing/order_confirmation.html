@@ -51,8 +51,12 @@
           <tr>
             <th>Producto</th>
             <th>Variante</th>
-            <th>Precio unitario</th>
+            <th>Precio Neto</th>
+            <th>IVA</th>
+            <th>Precio Total</th>
             <th>Cantidad</th>
+            <th>Subtotal Neto</th>
+            <th>IVA Total</th>
             <th>Subtotal</th>
           </tr>
         </thead>
@@ -74,16 +78,32 @@
                 </div>
               </div>
             </td>
-            <td>{{ item.variant.color }} / {{ item.variant.size }}</td>
+            <td>
+              {% if item.variant_details %}
+                {{ item.variant_details }}
+              {% else %}
+                {% if item.variant.has_variants %}
+                  {{ item.variant.color }} / {{ item.variant.size }}
+                {% else %}
+                  Producto sin variantes
+                {% endif %}
+              {% endif %}
+            </td>
+            <td>${{ item.net_unit_price|floatformat:0 }}</td>
+            <td>${{ item.vat_amount|floatformat:0 }}</td>
             <td>${{ item.unit_price|floatformat:0 }}</td>
             <td>{{ item.quantity }}</td>
+            <td>${{ item.net_subtotal|floatformat:0 }}</td>
+            <td>${{ item.vat_subtotal|floatformat:0 }}</td>
             <td class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</td>
           </tr>
           {% endfor %}
         </tbody>
         <tfoot>
           <tr>
-            <th colspan="4" class="has-text-right">Total:</th>
+            <th colspan="6" class="has-text-right">Totales:</th>
+            <th>${{ order.net_total|floatformat:0 }}</th>
+            <th>${{ order.vat_total|floatformat:0 }}</th>
             <th class="has-text-primary">${{ order.total_amount|floatformat:0 }}</th>
           </tr>
         </tfoot>

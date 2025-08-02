@@ -77,10 +77,15 @@
                     
                     <div class="mt-4">
                       <span class="tag is-primary">{{ product.category }}</span>
-                      {% if product.variants.count > 0 %}
+                      {% if product.has_variants %}
                         <span class="tag is-info">{{ product.variants.count }} variantes</span>
+                      {% elif product.has_standard_variant %}
+                        <span class="tag is-success">Producto estándar</span>
                       {% endif %}
                     </div>
+                    
+                    <!-- Store variant data for JavaScript -->
+                    <div class="is-hidden" data-variants='{{ product.all_variants_data|safe }}'></div>
                   </div>
                   <footer class="card-footer">
                     <a href="#" class="card-footer-item" onclick="showProductDetails('{{ product.id }}')">
@@ -177,17 +182,77 @@
       });
       
       modalTitle.textContent = productName;
-      // Fetch product variants (in a real implementation, this would be an AJAX call)
-      // For now, we'll simulate some variants
-      const variants = [
-        { id: 1, color: 'Rojo', size: 'Grande', price: 12500, stock: 10 },
-        { id: 2, color: 'Azul', size: 'Mediano', price: 10800, stock: 5 },
-        { id: 3, color: 'Verde', size: 'Pequeño', price: 9200, stock: 8 }
-      ];
       
+      // In a real implementation, this would be an AJAX call to get product variants
+      // For now, we'll fetch them from the page data
+      let hasVariants = false;
       let variantOptions = '';
-      variants.forEach(variant => {
-        variantOptions += `<option value="${variant.id}">${variant.color} / ${variant.size} - $${variant.price}</option>`;
+      let defaultVariantId = '';
+      
+      // Find the product card to check if it has variants
+      products.forEach(product => {
+        if (product.querySelector('.card-footer-item').getAttribute('onclick').includes(productId)) {
+          // Check if product has variants
+          const variantTag = product.querySelector('.tag.is-info');
+          const standardTag = product.querySelector('.tag.is-success');
+          hasVariants = variantTag !== null;
+          const isStandardProduct = standardTag !== null;
+          
+          // Get the variants data from the hidden div
+          const variantsDiv = product.querySelector('div[data-variants]');
+          if (variantsDiv) {
+            try {
+              const variants = JSON.parse(variantsDiv.getAttribute('data-variants'));
+              
+              // Process each variant
+              variants.forEach(variant => {
+                // Create display text based on variant type
+                let displayText;
+                if (variant.has_variants) {
+                  // Build display text with available attributes
+                  let parts = [];
+                  if (variant.color) parts.push(`Color: ${variant.color}`);
+                  if (variant.size) parts.push(`Tamaño: ${variant.size}`);
+                  if (variant.weight) parts.push(`Peso: ${variant.weight}g`);
+                  if (variant.is_luminous) parts.push("Luminoso");
+                  
+                  displayText = `${parts.join(', ')} - $${variant.unit_price}`;
+                } else {
+                  // Standard product without variants
+                  displayText = `Producto estándar - $${variant.unit_price}`;
+                }
+                
+                // Add option to select
+                variantOptions += `<option value="${variant.id}">${displayText}</option>`;
+                
+                // Set the first variant as default
+                if (!defaultVariantId) {
+                  defaultVariantId = variant.id;
+                }
+              });
+            } catch (e) {
+              console.error('Error parsing variants:', e);
+              
+              // Fallback to simulated variants if parsing fails
+              const fallbackVariants = [
+                { id: 1, color: 'Rojo', size: 'Grande', unit_price: 12500, stock: 10, has_variants: true },
+                { id: 2, color: 'Azul', size: 'Mediano', unit_price: 10800, stock: 5, has_variants: true },
+                { id: 3, color: 'Verde', size: 'Pequeño', unit_price: 9200, stock: 8, has_variants: true }
+              ];
+              
+              fallbackVariants.forEach(variant => {
+                let displayText = variant.has_variants 
+                  ? `${variant.color} / ${variant.size} - $${variant.unit_price}` 
+                  : `Producto estándar - $${variant.unit_price}`;
+                variantOptions += `<option value="${variant.id}">${displayText}</option>`;
+                
+                if (!defaultVariantId) {
+                  defaultVariantId = variant.id;
+                }
+              });
+            }
+          }
+        }
       });
       
       modalContent.innerHTML = `
@@ -209,6 +274,7 @@
             <form id="addToCartForm" class="mt-5">
               <input type="hidden" name="product_id" value="${productId}">
               
+              ${hasVariants ? `
               <div class="field">
                 <label class="label">Variante</label>
                 <div class="control">
@@ -220,6 +286,12 @@
                   </div>
                 </div>
               </div>
+              ` : `
+              <div class="notification is-info is-light">
+                <p>Este producto no tiene variantes.</p>
+              </div>
+              <input type="hidden" name="variant_id" value="${defaultVariantId}">
+              `}
               
               <div class="field">
                 <label class="label">Cantidad</label>

@@ -5,6 +5,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
 from django.db import transaction
 import json
+from decimal import Decimal
 
 from core.models import PurchaseOrder, Product, ProductVariant, Client, Cart, CartItem, OrderItem
 
@@ -44,6 +45,21 @@ def catalog(request):
     for product in products:
         if product.category not in categories:
             categories[product.category] = []
+        
+        # Check if product has variants with has_variants=False
+        has_standard_variant = product.variants.filter(has_variants=False).exists()
+        
+        # Add a flag to indicate if the product has variants
+        product.has_variants = product.variants.filter(has_variants=True).exists()
+        
+        # Add a flag to indicate if the product has a standard variant (no color/size)
+        product.has_standard_variant = has_standard_variant
+        
+        # Get all variants for the product to pass to the template
+        product.all_variants_data = list(product.variants.values('id', 'color', 'size', 'weight', 
+                                                               'is_luminous', 'unit_price', 'stock', 
+                                                               'has_variants'))
+        
         categories[product.category].append(product)
     
     # Get cart count for the user
@@ -74,19 +90,25 @@ def cart(request):
     
     cart_items = []
     total = 0
+    net_total = 0
+    vat_total = 0
     
     if cart:
         # Get cart items with related objects
         cart_items = cart.items.select_related('variant', 'variant__product').all()
         
-        # Calculate total
+        # Calculate totals
         for item in cart_items:
-            item.subtotal = item.variant.unit_price * item.quantity
+            # Use the properties directly
             total += item.subtotal
+            net_total += item.net_subtotal
+            vat_total += item.vat_subtotal
     
     context = {
         'cart_items': cart_items,
         'total': total,
+        'net_total': net_total,
+        'vat_total': vat_total,
         'cart_count': len(cart_items)
     }
     
@@ -128,21 +150,29 @@ def add_to_cart(request):
         if cart_item:
             # Update quantity if item exists
             cart_item.quantity += quantity
+            # Update variant details in case they've changed
+            cart_item.variant_details = variant.get_variant_display()
             cart_item.save()
         else:
             # Create new cart item
             CartItem.objects.create(
                 cart=cart,
                 variant=variant,
-                quantity=quantity
+                quantity=quantity,
+                variant_details=variant.get_variant_display()
             )
         
         # Get updated cart count
         cart_count = cart.items.count()
         
+        # Prepare response message based on variant type
+        message = 'Producto agregado al carrito'
+        if variant.has_variants:
+            message = f'Producto con variante "{variant.get_variant_display()}" agregado al carrito'
+        
         return JsonResponse({
             'success': True,
-            'message': 'Producto agregado al carrito',
+            'message': message,
             'cart_count': cart_count
         })
         
@@ -245,16 +275,23 @@ def checkout(request):
     # Get cart items with related objects
     cart_items = cart.items.select_related('variant', 'variant__product').all()
     
-    # Calculate total
+    # Calculate totals
     total = 0
+    net_total = 0
+    vat_total = 0
+    
     for item in cart_items:
-        item.subtotal = item.variant.unit_price * item.quantity
+        # Use the properties directly
         total += item.subtotal
+        net_total += item.net_subtotal
+        vat_total += item.vat_subtotal
     
     context = {
         'client': client,
         'cart_items': cart_items,
         'total': total,
+        'net_total': net_total,
+        'vat_total': vat_total,
         'cart_count': len(cart_items)
     }
     
@@ -293,9 +330,17 @@ def process_checkout(request):
         client.email = email
         client.save()
     
-    # Calculate total
+    # Calculate totals
     cart_items = cart.items.select_related('variant').all()
-    total = sum(item.variant.unit_price * item.quantity for item in cart_items)
+    total = 0
+    net_total = 0
+    vat_total = 0
+    
+    for item in cart_items:
+        # Use the properties directly
+        total += item.subtotal
+        net_total += item.net_subtotal
+        vat_total += item.vat_subtotal
     
     # Create order with transaction to ensure data integrity
     with transaction.atomic():
@@ -304,17 +349,32 @@ def process_checkout(request):
             client=client,
             status='pendiente',
             total_amount=total,
+            net_total=net_total,
+            vat_total=vat_total,
             notes=notes
         )
         
         # Create order items
         for cart_item in cart_items:
+            # Calculate prices
+            unit_price = cart_item.variant.unit_price
+            net_unit_price = unit_price / Decimal('1.19')  # Assuming 19% VAT
+            vat_amount = unit_price - net_unit_price
+            subtotal = unit_price * cart_item.quantity
+            net_subtotal = net_unit_price * cart_item.quantity
+            vat_subtotal = vat_amount * cart_item.quantity
+                
             OrderItem.objects.create(
                 order=order,
                 variant=cart_item.variant,
                 quantity=cart_item.quantity,
-                unit_price=cart_item.variant.unit_price,
-                subtotal=cart_item.variant.unit_price * cart_item.quantity
+                unit_price=unit_price,
+                net_unit_price=net_unit_price,
+                vat_amount=vat_amount,
+                subtotal=subtotal,
+                net_subtotal=net_subtotal,
+                vat_subtotal=vat_subtotal,
+                variant_details=cart_item.variant_details or cart_item.variant.get_variant_display()
             )
         
         # Clear cart
