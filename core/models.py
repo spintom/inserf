@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from decimal import Decimal
 
 class User(AbstractUser):
     name = models.CharField(max_length=100)
@@ -85,16 +86,39 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.variant}"
+    
+    @property
+    def net_price(self):
+        """Returns the unit price without VAT"""
+        return self.variant.unit_price / Decimal('1.19')  # Assuming 19% VAT
+    
+    @property
+    def vat_amount(self):
+        """Returns the VAT amount for a single unit"""
+        return self.variant.unit_price - self.net_price
+    
+    @property
+    def net_subtotal(self):
+        """Returns the subtotal without VAT"""
+        return self.net_price * self.quantity
+    
+    @property
+    def vat_subtotal(self):
+        """Returns the VAT amount for the subtotal"""
+        return self.vat_amount * self.quantity
         
     @property
     def subtotal(self):
+        """Returns the subtotal with VAT included"""
         return self.variant.unit_price * self.quantity
 
 class PurchaseOrder(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='purchase_orders')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50)
-    total_amount = models.DecimalField(max_digits=12, decimal_places=2)
+    total_amount = models.DecimalField(max_digits=12, decimal_places=2)  # Total with VAT
+    net_total = models.DecimalField(max_digits=12, decimal_places=2, default=0)  # Total without VAT
+    vat_total = models.DecimalField(max_digits=12, decimal_places=2, default=0)  # VAT amount
     notes = models.TextField(blank=True)
 
     def __str__(self):
@@ -104,14 +128,35 @@ class OrderItem(models.Model):
     order = models.ForeignKey(PurchaseOrder, on_delete=models.CASCADE, related_name='items')
     variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name='order_items')
     quantity = models.PositiveIntegerField()
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
-    subtotal = models.DecimalField(max_digits=12, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Price with VAT
+    net_unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Price without VAT
+    vat_amount = models.DecimalField(max_digits=10, decimal_places=2)  # VAT amount per unit
+    subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # Subtotal with VAT
+    net_subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # Subtotal without VAT
+    vat_subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # VAT amount for subtotal
     variant_details = models.TextField(blank=True)  # Store variant details as text
     
     def save(self, *args, **kwargs):
+        # Calculate prices if not provided
+        if not self.net_unit_price:
+            self.net_unit_price = self.unit_price / Decimal('1.19')  # Assuming 19% VAT
+        
+        if not self.vat_amount:
+            self.vat_amount = self.unit_price - self.net_unit_price
+            
+        if not self.net_subtotal:
+            self.net_subtotal = self.net_unit_price * self.quantity
+            
+        if not self.vat_subtotal:
+            self.vat_subtotal = self.vat_amount * self.quantity
+            
+        if not self.subtotal:
+            self.subtotal = self.unit_price * self.quantity
+            
         # Store variant details when saving the order item
         if not self.variant_details and self.variant:
             self.variant_details = self.variant.get_variant_display()
+            
         super().save(*args, **kwargs)
 
     def __str__(self):

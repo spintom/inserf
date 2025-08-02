@@ -150,12 +150,31 @@
           
           <div class="content">
             {% for item in cart_items %}
-              <div class="is-flex is-justify-content-space-between mb-2">
-                <div>
-                  <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
-                  <p class="is-size-7 has-text-grey">{{ item.variant.color }} / {{ item.variant.size }} x {{ item.quantity }}</p>
+              <div class="mb-3">
+                <div class="is-flex is-justify-content-space-between">
+                  <div>
+                    <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
+                    <p class="is-size-7 has-text-grey">
+                      {% if item.variant_details %}
+                        {{ item.variant_details }}
+                      {% else %}
+                        {% if item.variant.has_variants %}
+                          {{ item.variant.color }} / {{ item.variant.size }}
+                        {% else %}
+                          Producto sin variantes
+                        {% endif %}
+                      {% endif %}
+                      x {{ item.quantity }}
+                    </p>
+                  </div>
+                  <p class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</p>
                 </div>
-                <p class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</p>
+                <div class="is-flex is-justify-content-end mt-1">
+                  <div class="has-text-right is-size-7">
+                    <p class="has-text-grey">Precio neto: ${{ item.net_subtotal|floatformat:0 }}</p>
+                    <p class="has-text-grey">IVA: ${{ item.vat_subtotal|floatformat:0 }}</p>
+                  </div>
+                </div>
               </div>
               {% if not forloop.last %}
                 <hr class="my-2">
@@ -166,6 +185,16 @@
           <hr>
           
           <div class="is-flex is-justify-content-space-between">
+            <p class="has-text-weight-bold">Neto:</p>
+            <p class="has-text-weight-bold">${{ net_total|floatformat:0 }}</p>
+          </div>
+          
+          <div class="is-flex is-justify-content-space-between mt-2">
+            <p class="has-text-weight-bold">IVA (19%):</p>
+            <p class="has-text-weight-bold">${{ vat_total|floatformat:0 }}</p>
+          </div>
+          
+          <div class="is-flex is-justify-content-space-between mt-2">
             <p class="has-text-weight-bold">Total:</p>
             <p class="title is-4 has-text-primary">${{ total|floatformat:0 }}</p>
           </div>
