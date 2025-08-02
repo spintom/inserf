@@ -1,0 +1,286 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}Carrito de Compras - INSERF{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title is-2 mb-5" data-aos="fade-right">
+      <span class="icon-text">
+        <span class="icon has-text-primary">
+          <i class="fas fa-shopping-cart"></i>
+        </span>
+        <span>Carrito de Compras</span>
+      </span>
+    </h1>
+    
+    {% if cart_items %}
+      <div class="box p-5 mb-5" data-aos="fade-up">
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Variante</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart_items %}
+              <tr id="cart-item-{{ item.id }}">
+                <td>
+                  <div class="is-flex is-align-items-center">
+                    <figure class="image is-64x64 mr-3">
+                      {% if item.variant.product.image_url %}
+                        <img src="{{ item.variant.product.image_url }}" alt="{{ item.variant.product.name }}" class="is-rounded">
+                      {% else %}
+                        <img src="{% static 'images/banner1.jpg' %}" alt="Imagen no disponible" class="is-rounded">
+                      {% endif %}
+                    </figure>
+                    <div>
+                      <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
+                      <p class="has-text-grey is-size-7">{{ item.variant.product.brand }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ item.variant.color }} / {{ item.variant.size }}</td>
+                <td>${{ item.variant.unit_price|floatformat:0 }}</td>
+                <td>
+                  <div class="field has-addons">
+                    <div class="control">
+                      <button class="button is-small" onclick="updateCartItem({{ item.id }}, {{ item.quantity|add:'-1' }})">
+                        <span class="icon is-small">
+                          <i class="fas fa-minus"></i>
+                        </span>
+                      </button>
+                    </div>
+                    <div class="control">
+                      <input class="input is-small has-text-centered" type="number" value="{{ item.quantity }}" min="1" max="{{ item.variant.stock }}" style="width: 60px;" 
+                             onchange="updateCartItem({{ item.id }}, this.value)">
+                    </div>
+                    <div class="control">
+                      <button class="button is-small" onclick="updateCartItem({{ item.id }}, {{ item.quantity|add:'1' }})">
+                        <span class="icon is-small">
+                          <i class="fas fa-plus"></i>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+                <td class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</td>
+                <td>
+                  <button class="button is-small is-danger is-light" onclick="removeCartItem({{ item.id }})">
+                    <span class="icon">
+                      <i class="fas fa-trash"></i>
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="4" class="has-text-right">Total:</th>
+              <th class="has-text-primary">${{ total|floatformat:0 }}</th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      
+      <div class="columns" data-aos="fade-up">
+        <div class="column is-6">
+          <a href="{% url 'landing:catalog' %}" class="button is-light">
+            <span class="icon">
+              <i class="fas fa-arrow-left"></i>
+            </span>
+            <span>Continuar comprando</span>
+          </a>
+        </div>
+        <div class="column is-6 has-text-right">
+          <button class="button is-primary" onclick="checkout()">
+            <span class="icon">
+              <i class="fas fa-check"></i>
+            </span>
+            <span>Finalizar compra</span>
+          </button>
+        </div>
+      </div>
+    {% else %}
+      <div class="notification is-info is-light" data-aos="fade-up">
+        <div class="columns is-vcentered">
+          <div class="column is-2 has-text-centered">
+            <span class="icon is-large">
+              <i class="fas fa-shopping-cart fa-3x has-text-info"></i>
+            </span>
+          </div>
+          <div class="column">
+            <h3 class="title is-4 mb-2">Tu carrito está vacío</h3>
+            <p class="subtitle is-6">Agrega productos desde nuestro catálogo para comenzar tu pedido.</p>
+            <a href="{% url 'landing:catalog' %}" class="button is-info mt-3">
+              <span class="icon">
+                <i class="fas fa-fish"></i>
+              </span>
+              <span>Ir al catálogo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  // Función para actualizar la cantidad de un item en el carrito
+  function updateCartItem(itemId, quantity) {
+    if (quantity < 1) {
+      return;
+    }
+    
+    fetch('{% url "landing:update_cart_item" %}', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      },
+      body: JSON.stringify({
+        item_id: itemId,
+        quantity: quantity
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Actualizar la página o solo el elemento modificado
+        location.reload();
+      } else {
+        // Mostrar error
+        showNotification(data.error || 'Error al actualizar el carrito', 'danger');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      showNotification('Error al procesar la solicitud', 'danger');
+    });
+  }
+  
+  // Función para eliminar un item del carrito
+  function removeCartItem(itemId) {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto del carrito?')) {
+      fetch('{% url "landing:remove_cart_item" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+          item_id: itemId
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Eliminar el elemento del DOM o recargar la página
+          const cartItem = document.getElementById(`cart-item-${itemId}`);
+          if (cartItem) {
+            cartItem.remove();
+          }
+          
+          // Actualizar contador del carrito
+          updateCartCounter(data.cart_count);
+          
+          // Si no quedan items, recargar la página
+          if (data.cart_count === 0) {
+            location.reload();
+          }
+          
+          // Mostrar notificación
+          showNotification('Producto eliminado del carrito', 'success');
+        } else {
+          // Mostrar error
+          showNotification(data.error || 'Error al eliminar del carrito', 'danger');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        showNotification('Error al procesar la solicitud', 'danger');
+      });
+    }
+  }
+  
+  // Función para finalizar la compra
+  function checkout() {
+    // Redirigir a la página de checkout o mostrar modal de confirmación
+    alert('Funcionalidad de checkout en desarrollo');
+  }
+  
+  // Función para mostrar notificaciones
+  function showNotification(message, type) {
+    // Crear notificación
+    const notification = document.createElement('div');
+    notification.className = `notification is-${type} is-light`;
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.zIndex = '9999';
+    notification.style.maxWidth = '300px';
+    
+    // Agregar botón de cierre
+    const closeButton = document.createElement('button');
+    closeButton.className = 'delete';
+    closeButton.addEventListener('click', () => {
+      document.body.removeChild(notification);
+    });
+    
+    // Agregar mensaje
+    const messageText = document.createTextNode(message);
+    
+    // Ensamblar notificación
+    notification.appendChild(closeButton);
+    notification.appendChild(messageText);
+    
+    // Agregar al DOM
+    document.body.appendChild(notification);
+    
+    // Auto-cerrar después de 5 segundos
+    setTimeout(() => {
+      if (document.body.contains(notification)) {
+        document.body.removeChild(notification);
+      }
+    }, 5000);
+  }
+  
+  // Función para actualizar el contador del carrito
+  function updateCartCounter(count) {
+    const cartCounter = document.getElementById('cartCounter');
+    if (cartCounter) {
+      cartCounter.textContent = count;
+      
+      if (count > 0) {
+        cartCounter.classList.remove('is-hidden');
+      } else {
+        cartCounter.classList.add('is-hidden');
+      }
+    }
+  }
+  
+  // Función para obtener el token CSRF
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+</script>
+{% endblock %}
