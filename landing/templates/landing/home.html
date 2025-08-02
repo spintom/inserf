@@ -3,31 +3,79 @@
 
 {% block content %}
 
-<!-- Hero principal -->
-<section class="hero is-fullheight-with-navbar is-primary" data-aos="fade-in">
-  <div class="hero-body" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{% static 'images/hero-bg.png' %}') center center / cover no-repeat;">
-    <div class="container has-text-centered" data-aos="zoom-in" data-aos-delay="200">
-      <h1 class="title is-1 has-text-white">
-        Bienvenido a INSERF
-      </h1>
-      <p class="subtitle is-4 has-text-white mt-3">
-        Distribuidores oficiales de <strong>Jackall</strong> en Chile.
-      </p>
-      {% if request.user.is_authenticated %}
-        <a href="{% url 'landing:catalog' %}" class="button is-primary is-large is-rounded mt-5">
-          <span class="icon">
-            <i class="fas fa-fish"></i>
-          </span>
-          <span>Ingresar al catálogo</span>
-        </a>
-      {% else %}
-        <a href="{% url 'landing:login' %}" class="button is-primary is-large is-rounded mt-5">
-          <span class="icon">
-            <i class="fas fa-sign-in-alt"></i>
-          </span>
-          <span>Iniciar sesión para ver catálogo</span>
-        </a>
-      {% endif %}
+<!-- Hero Carousel -->
+<section class="hero-carousel" data-aos="fade-in">
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{% static 'images/hero-bg.png' %}') center center / cover no-repeat;">
+        <div class="slide-content container has-text-centered" data-aos="zoom-in" data-aos-delay="200">
+          <h1 class="title is-1 has-text-white">
+            Bienvenido a INSERF
+          </h1>
+          <p class="subtitle is-4 has-text-white mt-3">
+            Distribuidores oficiales de <strong>Jackall</strong> en Chile.
+          </p>
+          {% if request.user.is_authenticated %}
+            <a href="{% url 'landing:catalog' %}" class="button is-primary is-large is-rounded mt-5">
+              <span class="icon">
+                <i class="fas fa-fish"></i>
+              </span>
+              <span>Ingresar al catálogo</span>
+            </a>
+          {% else %}
+            <a href="{% url 'landing:login' %}" class="button is-primary is-large is-rounded mt-5">
+              <span class="icon">
+                <i class="fas fa-sign-in-alt"></i>
+              </span>
+              <span>Iniciar sesión para ver catálogo</span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{% static 'images/banner1.jpg' %}') center center / cover no-repeat;">
+        <div class="slide-content container has-text-centered">
+          <h1 class="title is-1 has-text-white">
+            Productos de Alta Calidad
+          </h1>
+          <p class="subtitle is-4 has-text-white mt-3">
+            Señuelos <strong>Jackall</strong> importados directamente desde Japón.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{% static 'images/banner2.jpg' %}') center center / cover no-repeat;">
+        <div class="slide-content container has-text-centered">
+          <h1 class="title is-1 has-text-white">
+            Distribución Mayorista
+          </h1>
+          <p class="subtitle is-4 has-text-white mt-3">
+            Precios especiales para <strong>tiendas y distribuidores</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Carousel Controls -->
+    <div class="carousel-controls">
+      <button class="carousel-button prev-button">
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-chevron-left fa-2x"></i>
+        </span>
+      </button>
+      <div class="carousel-indicators">
+        <span class="indicator active"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+      </div>
+      <button class="carousel-button next-button">
+        <span class="icon is-large has-text-white">
+          <i class="fas fa-chevron-right fa-2x"></i>
+        </span>
+      </button>
     </div>
   </div>
 </section>
@@ -35,39 +83,65 @@
 <!-- Productos destacados -->
 <section class="section has-background-white" data-aos="fade-up">
   <div class="container">
-    <h2 class="title is-2 has-text-centered mb-6">Productos Destacados</h2>
+    <div class="section-header has-text-centered mb-6">
+      <h2 class="title is-2">Productos Destacados</h2>
+      <p class="subtitle is-5 has-text-grey mt-2">Descubre nuestra selección de señuelos premium</p>
+      <div class="header-underline"></div>
+    </div>
     
-    <div class="columns is-multiline">
+    <div class="columns is-multiline is-centered">
       <div class="column is-one-fifth-desktop is-one-third-tablet" data-aos="fade-up" data-aos-delay="100">
-        <div class="card">
+        <div class="card product-card">
           <div class="card-image">
             <figure class="image is-4by3">
               <img src="{% static 'images/banner1.jpg' %}" alt="Producto 1">
             </figure>
+            <div class="card-badge">Popular</div>
           </div>
           <div class="card-content">
             <p class="title is-5">Jackall Pompadour</p>
-            <p class="subtitle is-6">Señuelo de superficie</p>
+            <p class="subtitle is-6 has-text-grey">Señuelo de superficie</p>
+            <div class="card-footer-item mt-3">
+              <span class="icon has-text-warning mr-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </span>
+              <span class="has-text-grey-dark">4.5/5</span>
+            </div>
           </div>
         </div>
       </div>
       
       <div class="column is-one-fifth-desktop is-one-third-tablet" data-aos="fade-up" data-aos-delay="200">
-        <div class="card">
+        <div class="card product-card">
           <div class="card-image">
             <figure class="image is-4by3">
               <img src="{% static 'images/banner2.jpg' %}" alt="Producto 2">
             </figure>
+            <div class="card-badge is-primary">Nuevo</div>
           </div>
           <div class="card-content">
             <p class="title is-5">Jackall TN</p>
-            <p class="subtitle is-6">Señuelo de profundidad</p>
+            <p class="subtitle is-6 has-text-grey">Señuelo de profundidad</p>
+            <div class="card-footer-item mt-3">
+              <span class="icon has-text-warning mr-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </span>
+              <span class="has-text-grey-dark">4.0/5</span>
+            </div>
           </div>
         </div>
       </div>
       
       <div class="column is-one-fifth-desktop is-one-third-tablet" data-aos="fade-up" data-aos-delay="300">
-        <div class="card">
+        <div class="card product-card">
           <div class="card-image">
             <figure class="image is-4by3">
               <img src="{% static 'images/banner3.jpg' %}" alt="Producto 3">
@@ -75,13 +149,23 @@
           </div>
           <div class="card-content">
             <p class="title is-5">Jackall Squad</p>
-            <p class="subtitle is-6">Señuelo minnow</p>
+            <p class="subtitle is-6 has-text-grey">Señuelo minnow</p>
+            <div class="card-footer-item mt-3">
+              <span class="icon has-text-warning mr-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </span>
+              <span class="has-text-grey-dark">5.0/5</span>
+            </div>
           </div>
         </div>
       </div>
       
       <div class="column is-one-fifth-desktop is-one-third-tablet" data-aos="fade-up" data-aos-delay="400">
-        <div class="card">
+        <div class="card product-card">
           <div class="card-image">
             <figure class="image is-4by3">
               <img src="{% static 'images/banner4.jpg' %}" alt="Producto 4">
@@ -89,21 +173,42 @@
           </div>
           <div class="card-content">
             <p class="title is-5">Jackall Riser</p>
-            <p class="subtitle is-6">Señuelo jerkbait</p>
+            <p class="subtitle is-6 has-text-grey">Señuelo jerkbait</p>
+            <div class="card-footer-item mt-3">
+              <span class="icon has-text-warning mr-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+              </span>
+              <span class="has-text-grey-dark">3.5/5</span>
+            </div>
           </div>
         </div>
       </div>
       
       <div class="column is-one-fifth-desktop is-one-third-tablet" data-aos="fade-up" data-aos-delay="500">
-        <div class="card">
+        <div class="card product-card">
           <div class="card-image">
             <figure class="image is-4by3">
               <img src="{% static 'images/banner5.jpg' %}" alt="Producto 5">
             </figure>
+            <div class="card-badge is-info">Oferta</div>
           </div>
           <div class="card-content">
             <p class="title is-5">Jackall Bros</p>
-            <p class="subtitle is-6">Señuelo soft bait</p>
+            <p class="subtitle is-6 has-text-grey">Señuelo soft bait</p>
+            <div class="card-footer-item mt-3">
+              <span class="icon has-text-warning mr-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </span>
+              <span class="has-text-grey-dark">4.0/5</span>
+            </div>
           </div>
         </div>
       </div>
@@ -111,12 +216,12 @@
     
     <div class="has-text-centered mt-6">
       {% if request.user.is_authenticated %}
-        <a href="{% url 'landing:catalog' %}" class="button is-primary">
+        <a href="{% url 'landing:catalog' %}" class="button is-primary is-medium is-rounded">
           <span class="icon"><i class="fas fa-th-large"></i></span>
           <span>Ver catálogo completo</span>
         </a>
       {% else %}
-        <a href="{% url 'landing:login' %}" class="button is-primary">
+        <a href="{% url 'landing:login' %}" class="button is-primary is-medium is-rounded">
           <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
           <span>Iniciar sesión para ver catálogo</span>
         </a>
@@ -126,23 +231,62 @@
 </section>
 
 <!-- Sección quiénes somos -->
-<section class="section has-background-light" data-aos="fade-up" data-aos-delay="100">
+<section class="section has-background-light about-section" data-aos="fade-up" data-aos-delay="100">
   <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content has-text-centered">
-          <h2 class="title is-2 mb-5">¿Quiénes somos?</h2>
-          <p class="subtitle is-4 has-text-grey">
+    <div class="section-header has-text-centered mb-6">
+      <h2 class="title is-2">¿Quiénes somos?</h2>
+      <div class="header-underline"></div>
+    </div>
+    
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-5" data-aos="fade-right">
+        <div class="about-image-container">
+          <figure class="image is-3by2">
+            <img src="{% static 'images/banner3.jpg' %}" alt="Pesca deportiva" class="about-image has-shadow">
+          </figure>
+          <div class="about-image-badge">
+            <span class="icon">
+              <i class="fas fa-certificate"></i>
+            </span>
+            <span>Desde 2015</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="column is-6 is-offset-1" data-aos="fade-left">
+        <div class="content about-content">
+          <h3 class="title is-3 has-text-primary-dark mb-4">Nuestra Historia</h3>
+          <p class="subtitle is-5 has-text-grey mb-5">
             INSERF LTDA. es una microempresa familiar chilena dedicada a la importación y distribución mayorista de artículos de pesca deportiva.
           </p>
-          <p class="is-size-5 has-text-grey-dark">
-            Con una alianza exclusiva con Jackall Japón, ofrecemos productos de alta calidad a negocios especializados en todo el país.
-            Nuestra pasión por la pesca y compromiso con la calidad nos distingue en el mercado nacional.
-          </p>
-          <div class="mt-5">
-            <span class="icon is-large has-text-primary">
-              <i class="fas fa-fish fa-2x"></i>
-            </span>
+          <div class="about-features">
+            <div class="about-feature">
+              <span class="icon has-text-primary">
+                <i class="fas fa-handshake"></i>
+              </span>
+              <div>
+                <h4 class="is-size-5 mb-2">Alianza Exclusiva</h4>
+                <p>Distribuidores oficiales de Jackall Japón en Chile.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <span class="icon has-text-primary">
+                <i class="fas fa-award"></i>
+              </span>
+              <div>
+                <h4 class="is-size-5 mb-2">Calidad Premium</h4>
+                <p>Ofrecemos productos de alta calidad a negocios especializados.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <span class="icon has-text-primary">
+                <i class="fas fa-heart"></i>
+              </span>
+              <div>
+                <h4 class="is-size-5 mb-2">Pasión por la Pesca</h4>
+                <p>Nuestro compromiso con la calidad nos distingue en el mercado nacional.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -151,64 +295,190 @@
 </section>
 
 <!-- Beneficios de comprar con nosotros -->
-<section class="section has-background-white">
+<section class="section has-background-white benefits-section">
   <div class="container">
-    <h2 class="title is-2 has-text-centered mb-6" data-aos="fade-up">¿Por qué elegirnos?</h2>
+    <div class="section-header has-text-centered mb-6" data-aos="fade-up">
+      <h2 class="title is-2">¿Por qué elegirnos?</h2>
+      <p class="subtitle is-5 has-text-grey mt-2">Ventajas de trabajar con nosotros</p>
+      <div class="header-underline"></div>
+    </div>
     
     <div class="columns is-multiline">
       <div class="column is-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="box has-text-centered has-background-primary-light h-100">
-          <span class="icon is-large has-text-primary mb-4">
-            <i class="fas fa-certificate fa-2x"></i>
-          </span>
-          <h3 class="title is-4">Representación oficial</h3>
-          <p class="has-text-grey-dark">Distribuidores autorizados de Jackall, Cian y Sabull en Chile.</p>
+        <div class="benefit-card">
+          <div class="benefit-icon-container">
+            <span class="icon">
+              <i class="fas fa-certificate"></i>
+            </span>
+          </div>
+          <div class="benefit-content">
+            <h3 class="title is-4">Representación oficial</h3>
+            <p class="has-text-grey-dark">Distribuidores autorizados de Jackall, Cian y Sabull en Chile.</p>
+            <ul class="benefit-list">
+              <li>
+                <span class="icon has-text-success"><i class="fas fa-check"></i></span>
+                <span>Productos originales garantizados</span>
+              </li>
+              <li>
+                <span class="icon has-text-success"><i class="fas fa-check"></i></span>
+                <span>Importación directa desde Japón</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       
       <div class="column is-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="box has-text-centered has-background-primary-light h-100">
-          <span class="icon is-large has-text-primary mb-4">
-            <i class="fas fa-handshake fa-2x"></i>
-          </span>
-          <h3 class="title is-4">Atención personalizada</h3>
-          <p class="has-text-grey-dark">Nos adaptamos a cada cliente mayorista con condiciones preferenciales.</p>
+        <div class="benefit-card">
+          <div class="benefit-icon-container">
+            <span class="icon">
+              <i class="fas fa-handshake"></i>
+            </span>
+          </div>
+          <div class="benefit-content">
+            <h3 class="title is-4">Atención personalizada</h3>
+            <p class="has-text-grey-dark">Nos adaptamos a cada cliente mayorista con condiciones preferenciales.</p>
+            <ul class="benefit-list">
+              <li>
+                <span class="icon has-text-success"><i class="fas fa-check"></i></span>
+                <span>Precios especiales para distribuidores</span>
+              </li>
+              <li>
+                <span class="icon has-text-success"><i class="fas fa-check"></i></span>
+                <span>Asesoría técnica especializada</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       
       <div class="column is-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="box has-text-centered has-background-primary-light h-100">
-          <span class="icon is-large has-text-primary mb-4">
-            <i class="fas fa-laptop fa-2x"></i>
-          </span>
-          <h3 class="title is-4">Catálogo en línea</h3>
-          <p class="has-text-grey-dark">Visualiza productos, stock y haz pedidos fácilmente desde cualquier dispositivo.</p>
+        <div class="benefit-card">
+          <div class="benefit-icon-container">
+            <span class="icon">
+              <i class="fas fa-laptop"></i>
+            </span>
+          </div>
+          <div class="benefit-content">
+            <h3 class="title is-4">Catálogo en línea</h3>
+            <p class="has-text-grey-dark">Visualiza productos, stock y haz pedidos fácilmente desde cualquier dispositivo.</p>
+            <ul class="benefit-list">
+              <li>
+                <span class="icon has-text-success"><i class="fas fa-check"></i></span>
+                <span>Plataforma intuitiva y moderna</span>
+              </li>
+              <li>
+                <span class="icon has-text-success"><i class="fas fa-check"></i></span>
+                <span>Seguimiento de pedidos en tiempo real</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+    </div>
+    
+    <div class="has-text-centered mt-6" data-aos="fade-up">
+      <a href="{% url 'landing:login' %}" class="button is-primary is-outlined is-medium is-rounded">
+        <span class="icon"><i class="fas fa-info-circle"></i></span>
+        <span>Más información</span>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- Contacto -->
-<section class="section has-background-light" data-aos="zoom-in">
+<section class="section contact-section has-background-light" data-aos="fade-up">
   <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-6">
-        <div class="box has-text-centered p-6">
-          <h2 class="title is-2 mb-5">¿Necesitas más información?</h2>
+    <div class="section-header has-text-centered mb-6">
+      <h2 class="title is-2">Contáctanos</h2>
+      <p class="subtitle is-5 has-text-grey mt-2">Estamos aquí para ayudarte</p>
+      <div class="header-underline"></div>
+    </div>
+    
+    <div class="columns is-centered is-multiline">
+      <div class="column is-5" data-aos="fade-right">
+        <div class="contact-info-card">
+          <div class="contact-header">
+            <h3 class="title is-3 has-text-white">¿Necesitas más información?</h3>
+            <p class="subtitle is-5 has-text-white-bis mt-3">
+              Estamos disponibles para atender todas tus consultas y solicitudes.
+            </p>
+          </div>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <span class="icon has-text-primary">
+                <i class="fas fa-map-marker-alt"></i>
+              </span>
+              <div>
+                <h4 class="is-size-5 mb-1">Ubicación</h4>
+                <p>Santiago, Chile</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <span class="icon has-text-primary">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <div>
+                <h4 class="is-size-5 mb-1">Email</h4>
+                <p><a href="mailto:contacto@inserf.cl" class="has-text-grey-dark">contacto@inserf.cl</a></p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <span class="icon has-text-primary">
+                <i class="fas fa-phone"></i>
+              </span>
+              <div>
+                <h4 class="is-size-5 mb-1">Teléfono</h4>
+                <p><a href="tel:+56912345678" class="has-text-grey-dark">+56 9 1234 5678</a></p>
+              </div>
+            </div>
+            
+            <div class="contact-social">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="column is-6 is-offset-1" data-aos="fade-left">
+        <div class="contact-action-card">
+          <h3 class="title is-4 mb-5">Contacto directo</h3>
           <p class="is-size-5 mb-5">
             Escríbenos a <a href="mailto:contacto@inserf.cl" class="has-text-primary">contacto@inserf.cl</a> 
             o contáctanos vía WhatsApp para atención directa a distribuidores.
           </p>
-          <div class="buttons is-centered">
-            <a href="mailto:contacto@inserf.cl" class="button is-primary is-medium">
+          
+          <div class="contact-buttons">
+            <a href="mailto:contacto@inserf.cl" class="contact-button email-button">
               <span class="icon"><i class="fas fa-envelope"></i></span>
               <span>Correo electrónico</span>
             </a>
-            <a href="https://wa.me/56912345678" class="button is-success is-medium">
+            <a href="https://wa.me/56912345678" class="contact-button whatsapp-button">
               <span class="icon"><i class="fab fa-whatsapp"></i></span>
               <span>WhatsApp</span>
             </a>
+          </div>
+          
+          <div class="business-hours mt-6">
+            <h4 class="is-size-5 mb-3">
+              <span class="icon has-text-primary mr-2">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>Horario de atención</span>
+            </h4>
+            <p class="has-text-grey-dark">Lunes a Viernes: 9:00 - 18:00 hrs</p>
+            <p class="has-text-grey-dark">Sábado: 10:00 - 14:00 hrs</p>
           </div>
         </div>
       </div>

@@ -1,29 +1,42 @@
-/* Custom styles for Bulma */
-/* Global box model */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Sticky footer setup */
-html {
-  height: 100%;
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
+/* General Styles */
 body {
-  min-height: 100vh; /* Use viewport height instead of percentage */
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  line-height: 1.5;
-  overflow-x: hidden;
+  font-family: 'Familjen Grotesk', sans-serif;
+  scroll-behavior: smooth;
+  font-weight: 500;
 }
 
-/* Specific class for sticky footer */
+/* Improved text visibility */
+.title, .subtitle {
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+.has-text-grey, .has-text-grey-dark {
+  font-weight: 500;
+}
+
+.has-text-white, .has-text-white-bis, .has-text-grey-lighter {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Button text improvements */
+.button {
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Navigation improvements */
+.navbar-item, .navbar-link {
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-weight: 500;
+}
+
+/* Footer text improvements */
+.footer p, .footer a, .footer li {
+  font-weight: 500;
+}
+
 .has-sticky-footer {
   display: flex;
   min-height: 100vh;
@@ -31,195 +44,651 @@ body {
 }
 
 main {
-  flex: 1 0 auto;
-  min-height: 50vh; /* Ensure main content has minimum height */
-}
-
-/* Ensure footer stays at bottom */
-.footer {
-  margin-top: auto;
-  width: 100%;
-  flex-shrink: 0; /* Prevent footer from shrinking */
-  position: relative; /* Ensure proper stacking context */
-  z-index: 10; /* Ensure footer stays above other content */
+  flex: 1;
 }
 
 .logo-header {
-  height: 80px;
-  max-height: 80px;
+  max-height: 40px;
 }
 
 .logo-footer {
-  height: 40px;
-  opacity: 0.85;
+  max-height: 60px;
 }
 
-/* Hero banner adjustments */
-.hero.is-fullheight-with-navbar {
-  min-height: calc(100vh - 3.25rem);
-}
-
-.hero .title, 
-.hero .subtitle {
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
-
-/* Custom colors */
-.has-text-primary-dark {
-  color: #2160c4 !important;
-}
-
-.has-background-primary-light {
-  background-color: #eef6fc !important;
-}
-
-/* Custom spacing */
-.mt-6 {
-  margin-top: 3rem !important;
-}
-
-.mb-6 {
-  margin-bottom: 3rem !important;
-}
-
-.p-6 {
-  padding: 3rem !important;
-}
-
-/* Custom card styles */
-.card, .box {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.card:hover, .box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* Custom section spacing */
-section {
-  padding: 4rem 1.5rem;
-}
-
-/* Fix for navbar overlap */
-main {
-  padding-top: 80px; /* Match the logo height */
-  /* flex property already defined in sticky footer setup */
-}
-
-/* Tab content styling */
-.tab-content {
-  display: block;
-}
-
-.tab-content.is-hidden {
-  display: none;
-}
-
-/* Notification styling */
-.notification {
+/* Hero Carousel Styles */
+.hero-carousel {
   position: relative;
-  z-index: 1;
-}
-
-/* Fix for overlapping notes */
-.card-content .notification {
+  height: 80vh;
+  width: 90%;
+  margin: 2rem auto;
   overflow: hidden;
-  word-wrap: break-word;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-/* Mobile menu enhancements */
-.navbar-burger {
-  transition: all 0.3s ease-in-out;
+.carousel-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-.navbar-burger span {
-  height: 2px;
-  width: 20px;
-  transition: all 0.3s ease-in-out;
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
-.navbar-burger.is-active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.navbar-burger.is-active span:nth-child(2) {
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  transform: scale(1.05);
+  background-size: cover !important;
+  background-position: center center !important;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
 }
 
-.navbar-burger.is-active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+  transform: scale(1);
 }
 
-.navbar-menu {
-  box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
-  padding: 0.5rem 0;
+.slide-content {
+  padding: 2rem;
+  max-width: 800px;
+  animation: fadeInUp 1s ease-out;
 }
 
-.navbar-menu.is-active {
-  animation: slideDown 0.3s ease-in-out;
+.carousel-controls {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
-@keyframes slideDown {
-  0% {
+.carousel-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 20px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.carousel-button:hover {
+  opacity: 1;
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 10px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Responsive adjustments */
+/* Improved Product Cards */
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  transition: transform 0.5s;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+/* Watermark for catalog images */
+.card-image::after {
+  content: 'Bienvenido INSERF';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 209, 178, 0.4);
+  padding: 5px 15px;
+  border-radius: 4px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-content .title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.card-content .subtitle {
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Product Card Specific Styles */
+.product-card {
+  position: relative;
+}
+
+.card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff9800;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.card-badge.is-primary {
+  background-color: #00d1b2;
+}
+
+.card-badge.is-info {
+  background-color: #3298dc;
+}
+
+.card-footer-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.has-text-warning i {
+  font-size: 0.9rem;
+  margin-right: 1px;
+}
+
+/* Section Header Styles */
+.section-header {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.section-header .title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-header .subtitle {
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.header-underline {
+  width: 80px;
+  height: 4px;
+  background-color: #00d1b2;
+  margin: 1.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Section Improvements */
+.section {
+  padding: 5rem 1.5rem;
+  position: relative;
+}
+
+.section.has-background-light {
+  background-color: #f7f9fc !important;
+  background-image: linear-gradient(to bottom, rgba(245, 247, 250, 0.8) 0%, rgba(245, 247, 250, 0.4) 100%), 
+                    url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23e0e5ec" x="0" y="0"/></svg>');
+  background-size: cover, 20px 20px;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, transparent, rgba(0, 209, 178, 0.5), transparent);
+}
+
+.box.has-background-primary-light {
+  background-color: #ebf8ff !important;
+  transition: transform 0.3s;
+  border-left: 3px solid #00d1b2;
+}
+
+.box.has-background-primary-light:hover {
+  transform: translateY(-5px);
+}
+
+/* About Section Styles */
+.about-section {
+  position: relative;
+}
+
+.about-image-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.about-image {
+  border-radius: 8px;
+  transition: transform 0.5s;
+  position: relative;
+  z-index: 1;
+}
+
+.about-image::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 209, 178, 0.2);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.has-shadow {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-image-badge {
+  position: absolute;
+  bottom: -15px;
+  right: 20px;
+  background-color: #00d1b2;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.about-content {
+  padding: 1rem;
+}
+
+.about-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.about-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.about-feature .icon {
+  background-color: rgba(0, 209, 178, 0.1);
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about-feature .icon i {
+  font-size: 1.2rem;
+  color: #00d1b2;
+}
+
 @media screen and (max-width: 768px) {
-  section {
-    padding: 2rem 1rem;
+  .about-image-container {
+    margin-bottom: 3rem;
   }
   
-  .title.is-1 {
-    font-size: 2.5rem !important;
-  }
-  
-  .title.is-2 {
-    font-size: 2rem !important;
-  }
-  
-  .p-6 {
-    padding: 1.5rem !important;
-  }
-  
-  .hero-body {
-    padding: 2rem 1rem !important;
-  }
-  
-  .navbar-item {
-    padding: 0.75rem 1.5rem;
-  }
-  
-  .navbar-dropdown {
-    padding: 0;
-    border-radius: 0;
-    border-top: 1px solid rgba(0,0,0,0.05);
-  }
-  
-  .navbar-dropdown .navbar-item {
-    padding-left: 2.5rem;
-  }
-  
-  .logo-header {
-    height: 60px;
-    max-height: 60px;
+  .about-feature {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 }
 
-/* Button hover effects */
-.button {
-  transition: transform 0.2s ease;
+/* Benefits Section Styles */
+.benefits-section {
+  position: relative;
 }
 
-.button:hover {
-  transform: translateY(-2px);
+.benefit-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.benefit-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #00d1b2, #00a99d);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-card:hover::after {
+  transform: scaleX(1);
+}
+
+.benefit-icon-container {
+  background: linear-gradient(135deg, #00d1b2, #00a99d);
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.benefit-icon-container .icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.benefit-icon-container .icon i {
+  font-size: 2rem;
+  color: white;
+}
+
+.benefit-content {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.benefit-list {
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+.benefit-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+  gap: 0.5rem;
+}
+
+.benefit-list .icon {
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .benefit-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Contact Section Styles */
+.contact-section {
+  position: relative;
+}
+
+.contact-info-card {
+  background: linear-gradient(135deg, #2c3e50, #1a252f);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  position: relative;
+}
+
+.contact-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path d="M15 5 L25 15 L15 25 L5 15 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
+  background-size: 30px 30px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.contact-header {
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+.contact-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact-details {
+  padding: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.contact-item .icon {
+  background-color: rgba(0, 209, 178, 0.1);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-item h4 {
+  font-weight: 600;
+}
+
+.contact-item p, .contact-item a {
+  font-weight: 500;
+}
+
+.contact-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s;
+}
+
+.social-icon:hover {
+  background-color: #00d1b2;
+  transform: translateY(-3px);
+}
+
+.contact-action-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  position: relative;
+  border-top: 4px solid #00d1b2;
+  background-image: linear-gradient(to bottom right, rgba(0, 209, 178, 0.05) 0%, transparent 50%);
+}
+
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contact-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 250px;
+}
+
+.email-button {
+  background-color: #00d1b2;
+  color: white;
+}
+
+.email-button:hover {
+  background-color: #00c4a7;
+  box-shadow: 0 5px 15px rgba(0, 209, 178, 0.3);
+  color: white;
+}
+
+.whatsapp-button {
+  background-color: #25d366;
+  color: white;
+}
+
+.whatsapp-button:hover {
+  background-color: #22c55e;
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+  color: white;
+}
+
+.business-hours {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .contact-info-card {
+    margin-bottom: 2rem;
+  }
+  
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-button {
+    max-width: 100%;
+  }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .hero-carousel {
+    height: 70vh;
+    width: 95%;
+    margin: 1rem auto;
+  }
+  
+  .carousel-button {
+    margin: 0 10px;
+  }
+  
+  .carousel-controls {
+    bottom: 20px;
+  }
+  
+  .section {
+    padding: 3rem 1rem;
+  }
 }
