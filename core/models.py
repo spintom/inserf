@@ -34,16 +34,35 @@ class Product(models.Model):
 
 class ProductVariant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
-    color = models.CharField(max_length=50)
-    weight = models.FloatField()
-    size = models.CharField(max_length=50)
+    color = models.CharField(max_length=50, blank=True)
+    weight = models.FloatField(null=True, blank=True)
+    size = models.CharField(max_length=50, blank=True)
     is_luminous = models.BooleanField(default=False)
     stock = models.PositiveIntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     bulk_price = models.DecimalField(max_digits=10, decimal_places=2)
+    has_variants = models.BooleanField(default=True)
 
     def __str__(self):
+        if not self.has_variants:
+            return f"{self.product.name}"
         return f"{self.product.name} - {self.color}/{self.size}"
+        
+    def get_variant_display(self):
+        if not self.has_variants:
+            return "Producto sin variantes"
+        
+        variant_parts = []
+        if self.color:
+            variant_parts.append(f"Color: {self.color}")
+        if self.size:
+            variant_parts.append(f"Tamaño: {self.size}")
+        if self.weight:
+            variant_parts.append(f"Peso: {self.weight}g")
+        if self.is_luminous:
+            variant_parts.append("Luminoso")
+            
+        return ", ".join(variant_parts) if variant_parts else "Estándar"
 
 class Cart(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='carts')
@@ -56,9 +75,20 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name='cart_items')
     quantity = models.PositiveIntegerField()
+    variant_details = models.TextField(blank=True)  # Store variant details as text
+    
+    def save(self, *args, **kwargs):
+        # Store variant details when saving the cart item
+        if not self.variant_details and self.variant:
+            self.variant_details = self.variant.get_variant_display()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.quantity} x {self.variant}"
+        
+    @property
+    def subtotal(self):
+        return self.variant.unit_price * self.quantity
 
 class PurchaseOrder(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='purchase_orders')
@@ -76,6 +106,13 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     subtotal = models.DecimalField(max_digits=12, decimal_places=2)
+    variant_details = models.TextField(blank=True)  # Store variant details as text
+    
+    def save(self, *args, **kwargs):
+        # Store variant details when saving the order item
+        if not self.variant_details and self.variant:
+            self.variant_details = self.variant.get_variant_display()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.quantity} x {self.variant} for Order #{self.order.id}"

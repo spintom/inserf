@@ -44,6 +44,21 @@ def catalog(request):
     for product in products:
         if product.category not in categories:
             categories[product.category] = []
+        
+        # Check if product has variants with has_variants=False
+        has_standard_variant = product.variants.filter(has_variants=False).exists()
+        
+        # Add a flag to indicate if the product has variants
+        product.has_variants = product.variants.filter(has_variants=True).exists()
+        
+        # Add a flag to indicate if the product has a standard variant (no color/size)
+        product.has_standard_variant = has_standard_variant
+        
+        # Get all variants for the product to pass to the template
+        product.all_variants_data = list(product.variants.values('id', 'color', 'size', 'weight', 
+                                                               'is_luminous', 'unit_price', 'stock', 
+                                                               'has_variants'))
+        
         categories[product.category].append(product)
     
     # Get cart count for the user
@@ -81,7 +96,7 @@ def cart(request):
         
         # Calculate total
         for item in cart_items:
-            item.subtotal = item.variant.unit_price * item.quantity
+            # Use the subtotal property directly instead of trying to set it
             total += item.subtotal
     
     context = {
@@ -128,21 +143,29 @@ def add_to_cart(request):
         if cart_item:
             # Update quantity if item exists
             cart_item.quantity += quantity
+            # Update variant details in case they've changed
+            cart_item.variant_details = variant.get_variant_display()
             cart_item.save()
         else:
             # Create new cart item
             CartItem.objects.create(
                 cart=cart,
                 variant=variant,
-                quantity=quantity
+                quantity=quantity,
+                variant_details=variant.get_variant_display()
             )
         
         # Get updated cart count
         cart_count = cart.items.count()
         
+        # Prepare response message based on variant type
+        message = 'Producto agregado al carrito'
+        if variant.has_variants:
+            message = f'Producto con variante "{variant.get_variant_display()}" agregado al carrito'
+        
         return JsonResponse({
             'success': True,
-            'message': 'Producto agregado al carrito',
+            'message': message,
             'cart_count': cart_count
         })
         
@@ -248,7 +271,7 @@ def checkout(request):
     # Calculate total
     total = 0
     for item in cart_items:
-        item.subtotal = item.variant.unit_price * item.quantity
+        # Use the subtotal property directly instead of trying to set it
         total += item.subtotal
     
     context = {
@@ -314,7 +337,8 @@ def process_checkout(request):
                 variant=cart_item.variant,
                 quantity=cart_item.quantity,
                 unit_price=cart_item.variant.unit_price,
-                subtotal=cart_item.variant.unit_price * cart_item.quantity
+                subtotal=cart_item.variant.unit_price * cart_item.quantity,
+                variant_details=cart_item.variant_details or cart_item.variant.get_variant_display()
             )
         
         # Clear cart

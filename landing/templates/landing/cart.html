@@ -46,7 +46,17 @@
                     </div>
                   </div>
                 </td>
-                <td>{{ item.variant.color }} / {{ item.variant.size }}</td>
+                <td>
+                  {% if item.variant_details %}
+                    {{ item.variant_details }}
+                  {% else %}
+                    {% if item.variant.has_variants %}
+                      {{ item.variant.color }} / {{ item.variant.size }}
+                    {% else %}
+                      Producto sin variantes
+                    {% endif %}
+                  {% endif %}
+                </td>
                 <td>${{ item.variant.unit_price|floatformat:0 }}</td>
                 <td>
                   <div class="field has-addons">
