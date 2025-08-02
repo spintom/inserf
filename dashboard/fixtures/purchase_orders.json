@@ -6,7 +6,7 @@
       "client": 1,
       "created_at": "2024-07-01T10:00:00Z",
       "status": "pendiente",
-      "total_amount": "119980.00",
+      "total_amount": "24000.00",
       "notes": "Entrega urgente solicitada."
     }
   },
@@ -17,7 +17,7 @@
       "client": 1,
       "created_at": "2024-07-10T15:30:00Z",
       "status": "completado",
-      "total_amount": "69990.00",
+      "total_amount": "7980.00",
       "notes": ""
     }
   }

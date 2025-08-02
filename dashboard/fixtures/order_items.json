@@ -6,8 +6,8 @@
       "order": 1,
       "variant": 1,
       "quantity": 2,
-      "unit_price": "59990.00",
-      "subtotal": "119980.00"
+      "unit_price": "12000.00",
+      "subtotal": "14000.00"
     }
   },
   {
@@ -17,8 +17,8 @@
       "order": 2,
       "variant": 2,
       "quantity": 1,
-      "unit_price": "69990.00",
-      "subtotal": "69990.00"
+      "unit_price": "3990.00",
+      "subtotal": "7980.00"
     }
   }
 ]
