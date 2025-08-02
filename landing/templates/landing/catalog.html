@@ -1,0 +1,205 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}Catálogo de Productos - INSERF{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title is-2 mb-5" data-aos="fade-right">
+      <span class="icon-text">
+        <span class="icon has-text-primary">
+          <i class="fas fa-fish"></i>
+        </span>
+        <span>Catálogo de Productos</span>
+      </span>
+    </h1>
+    
+    <div class="notification is-info is-light mb-5" data-aos="fade-up">
+      <div class="columns is-vcentered">
+        <div class="column is-1 has-text-centered">
+          <span class="icon is-large">
+            <i class="fas fa-info-circle fa-2x has-text-info"></i>
+          </span>
+        </div>
+        <div class="column">
+          <p>Bienvenido al catálogo exclusivo para clientes de INSERF. Aquí encontrarás todos nuestros productos disponibles organizados por categoría.</p>
+          <p class="mt-2">Para realizar un pedido o consultar precios especiales, contáctanos directamente.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Filtros y búsqueda -->
+    <div class="box mb-5" data-aos="fade-up">
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input" type="text" id="searchInput" placeholder="Buscar productos...">
+        </div>
+        <div class="control">
+          <button class="button is-primary">
+            <span class="icon">
+              <i class="fas fa-search"></i>
+            </span>
+            <span>Buscar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Productos por categoría -->
+    {% if categories %}
+      {% for category, products in categories.items %}
+        <div class="mb-6" data-aos="fade-up">
+          <h2 class="title is-3 has-text-primary mb-4">{{ category }}</h2>
+          
+          <div class="columns is-multiline">
+            {% for product in products %}
+              <div class="column is-one-quarter-desktop is-one-third-tablet product-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+                <div class="card h-100">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      {% if product.image_url %}
+                        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                      {% else %}
+                        <img src="{% static 'images/banner1.jpg' %}" alt="Imagen no disponible">
+                      {% endif %}
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <p class="title is-5">{{ product.name }}</p>
+                    <p class="subtitle is-6">{{ product.brand }}</p>
+                    
+                    {% if product.description %}
+                      <div class="content">
+                        <p>{{ product.description|truncatechars:100 }}</p>
+                      </div>
+                    {% endif %}
+                    
+                    <div class="mt-4">
+                      <span class="tag is-primary">{{ product.category }}</span>
+                      {% if product.variants.count > 0 %}
+                        <span class="tag is-info">{{ product.variants.count }} variantes</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="showProductDetails('{{ product.id }}')">
+                      <span class="icon"><i class="fas fa-eye"></i></span>
+                      <span>Ver detalles</span>
+                    </a>
+                  </footer>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="notification is-warning" data-aos="fade-up">
+        <p class="has-text-centered">
+          <span class="icon mb-3">
+            <i class="fas fa-exclamation-triangle fa-2x"></i>
+          </span>
+          <br>
+          No hay productos disponibles en este momento. Por favor, vuelve a intentarlo más tarde.
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Modal para detalles del producto -->
+<div class="modal" id="productModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title" id="modalTitle">Detalles del Producto</p>
+      <button class="delete" aria-label="close" onclick="closeModal()"></button>
+    </header>
+    <section class="modal-card-body" id="modalContent">
+      <!-- El contenido se cargará dinámicamente -->
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-primary" onclick="closeModal()">Cerrar</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+  // Función para filtrar productos
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    
+    searchInput.addEventListener('keyup', function() {
+      const searchTerm = this.value.toLowerCase();
+      const productItems = document.querySelectorAll('.product-item');
+      
+      productItems.forEach(item => {
+        const productName = item.querySelector('.title').textContent.toLowerCase();
+        const productBrand = item.querySelector('.subtitle').textContent.toLowerCase();
+        
+        if (productName.includes(searchTerm) || productBrand.includes(searchTerm)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+  
+  // Funciones para el modal
+  function showProductDetails(productId) {
+    // En una implementación real, aquí se cargarían los detalles del producto mediante AJAX
+    const modal = document.getElementById('productModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    
+    // Simulación de contenido
+    modalTitle.textContent = 'Cargando detalles...';
+    modalContent.innerHTML = '<div class="has-text-centered"><span class="icon is-large"><i class="fas fa-spinner fa-pulse fa-3x"></i></span></div>';
+    
+    modal.classList.add('is-active');
+    
+    // Simulación de carga de datos
+    setTimeout(() => {
+      // Aquí se cargarían los datos reales del producto
+      const products = document.querySelectorAll('.product-item');
+      let productName = '';
+      
+      products.forEach(product => {
+        if (product.querySelector('.card-footer-item').getAttribute('onclick').includes(productId)) {
+          productName = product.querySelector('.title').textContent;
+        }
+      });
+      
+      modalTitle.textContent = productName;
+      modalContent.innerHTML = `
+        <div class="columns">
+          <div class="column is-4">
+            <figure class="image is-4by3">
+              <img src="{% static 'images/banner1.jpg' %}" alt="${productName}">
+            </figure>
+          </div>
+          <div class="column">
+            <p><strong>Descripción:</strong> Información detallada del producto.</p>
+            <p class="mt-3"><strong>Características:</strong></p>
+            <ul>
+              <li>Característica 1</li>
+              <li>Característica 2</li>
+              <li>Característica 3</li>
+            </ul>
+            <div class="notification is-info is-light mt-4">
+              <p>Para consultar precios y disponibilidad, contáctanos directamente.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }, 1000);
+  }
+  
+  function closeModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('is-active');
+  }
+</script>
+{% endblock %}

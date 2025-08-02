@@ -56,9 +56,9 @@ Se han definido rutas limpias y segmentadas:
 
 Se mantiene una estructura de documentación interna en archivos `.md`, incluyendo:
 
-- Checklist de tareas (`12-tree-tasks.md`)
-- Modelo de entidades (`11-model-entities.md`)
-- Estructura del proyecto (`10-project-structure.md`)
+- Checklist de tareas (`01-tree-tasks.md`)
+- Modelo de entidades (`02-model-entities.md`)
+- Estructura del proyecto (`03-project-structure.md`)
 - Archivos futuros para despliegue y testing automatizado
 
 ---
