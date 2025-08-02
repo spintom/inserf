@@ -48,6 +48,17 @@
                                     <span>Admin Panel</span>
                                 </a>
                             {% elif request.user.role == "client" %}
+                                <a class="navbar-item" href="{% url 'landing:catalog' %}">
+                                    <span class="icon"><i class="fas fa-fish"></i></span>
+                                    <span>Catálogo</span>
+                                </a>
+                                <a class="navbar-item" href="{% url 'landing:cart' %}">
+                                    <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+                                    <span>Carrito</span>
+                                    <span class="tag is-primary is-rounded ml-2 {% if not cart_count %}is-hidden{% endif %}" id="cartCounter">
+                                        {{ cart_count|default:"0" }}
+                                    </span>
+                                </a>
                                 <a class="navbar-item" href="{% url 'landing:my_orders' %}">
                                     <span class="icon"><i class="fas fa-shopping-bag"></i></span>
                                     <span>Mis pedidos</span>
@@ -98,7 +109,7 @@
                     <h3 class="title is-5 has-text-white mb-4">Enlaces rápidos</h3>
                     <ul>
                         <li><a href="/" class="has-text-grey-lighter">Inicio</a></li>
-                        <li><a href="#" class="has-text-grey-lighter">Catálogo</a></li>
+                        <li><a href="{% url 'landing:catalog' %}" class="has-text-grey-lighter">Catálogo</a></li>
                         <li><a href="#" class="has-text-grey-lighter">Sobre nosotros</a></li>
                         <li><a href="#" class="has-text-grey-lighter">Contacto</a></li>
                     </ul>

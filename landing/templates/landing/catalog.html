@@ -87,6 +87,10 @@
                       <span class="icon"><i class="fas fa-eye"></i></span>
                       <span>Ver detalles</span>
                     </a>
+                    <a href="#" class="card-footer-item has-text-success" onclick="addToCart('{{ product.id }}')">
+                      <span class="icon"><i class="fas fa-cart-plus"></i></span>
+                      <span>Agregar</span>
+                    </a>
                   </footer>
                 </div>
               </div>
@@ -173,6 +177,19 @@
       });
       
       modalTitle.textContent = productName;
+      // Fetch product variants (in a real implementation, this would be an AJAX call)
+      // For now, we'll simulate some variants
+      const variants = [
+        { id: 1, color: 'Rojo', size: 'Grande', price: 12500, stock: 10 },
+        { id: 2, color: 'Azul', size: 'Mediano', price: 10800, stock: 5 },
+        { id: 3, color: 'Verde', size: 'Pequeño', price: 9200, stock: 8 }
+      ];
+      
+      let variantOptions = '';
+      variants.forEach(variant => {
+        variantOptions += `<option value="${variant.id}">${variant.color} / ${variant.size} - $${variant.price}</option>`;
+      });
+      
       modalContent.innerHTML = `
         <div class="columns">
           <div class="column is-4">
@@ -188,9 +205,38 @@
               <li>Característica 2</li>
               <li>Característica 3</li>
             </ul>
-            <div class="notification is-info is-light mt-4">
-              <p>Para consultar precios y disponibilidad, contáctanos directamente.</p>
-            </div>
+            
+            <form id="addToCartForm" class="mt-5">
+              <input type="hidden" name="product_id" value="${productId}">
+              
+              <div class="field">
+                <label class="label">Variante</label>
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select name="variant_id" required>
+                      <option value="">Selecciona una variante</option>
+                      ${variantOptions}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="field">
+                <label class="label">Cantidad</label>
+                <div class="control">
+                  <input class="input" type="number" name="quantity" min="1" value="1" required>
+                </div>
+              </div>
+              
+              <div class="field mt-4">
+                <div class="control">
+                  <button type="button" class="button is-success is-fullwidth" onclick="addToCartFromModal()">
+                    <span class="icon"><i class="fas fa-cart-plus"></i></span>
+                    <span>Agregar al carrito</span>
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       `;
@@ -200,6 +246,130 @@
   function closeModal() {
     const modal = document.getElementById('productModal');
     modal.classList.remove('is-active');
+  }
+  
+  // Función para agregar al carrito desde la tarjeta del producto
+  function addToCart(productId) {
+    // Abrir el modal de detalles para seleccionar variante y cantidad
+    showProductDetails(productId);
+  }
+  
+  // Función para agregar al carrito desde el modal
+  function addToCartFromModal() {
+    const form = document.getElementById('addToCartForm');
+    const productId = form.querySelector('[name="product_id"]').value;
+    const variantId = form.querySelector('[name="variant_id"]').value;
+    const quantity = form.querySelector('[name="quantity"]').value;
+    
+    if (!variantId) {
+      alert('Por favor selecciona una variante');
+      return;
+    }
+    
+    if (quantity < 1) {
+      alert('La cantidad debe ser al menos 1');
+      return;
+    }
+    
+    // Enviar datos al servidor mediante fetch
+    fetch('{% url "landing:add_to_cart" %}', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      },
+      body: JSON.stringify({
+        product_id: productId,
+        variant_id: variantId,
+        quantity: quantity
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Mostrar notificación de éxito
+        showNotification('Producto agregado al carrito', 'success');
+        
+        // Actualizar contador del carrito si existe
+        updateCartCounter(data.cart_count);
+        
+        // Cerrar el modal
+        closeModal();
+      } else {
+        // Mostrar error
+        showNotification(data.error || 'Error al agregar al carrito', 'danger');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      showNotification('Error al procesar la solicitud', 'danger');
+    });
+  }
+  
+  // Función para mostrar notificaciones
+  function showNotification(message, type) {
+    // Crear notificación
+    const notification = document.createElement('div');
+    notification.className = `notification is-${type} is-light`;
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.zIndex = '9999';
+    notification.style.maxWidth = '300px';
+    
+    // Agregar botón de cierre
+    const closeButton = document.createElement('button');
+    closeButton.className = 'delete';
+    closeButton.addEventListener('click', () => {
+      document.body.removeChild(notification);
+    });
+    
+    // Agregar mensaje
+    const messageText = document.createTextNode(message);
+    
+    // Ensamblar notificación
+    notification.appendChild(closeButton);
+    notification.appendChild(messageText);
+    
+    // Agregar al DOM
+    document.body.appendChild(notification);
+    
+    // Auto-cerrar después de 5 segundos
+    setTimeout(() => {
+      if (document.body.contains(notification)) {
+        document.body.removeChild(notification);
+      }
+    }, 5000);
+  }
+  
+  // Función para actualizar el contador del carrito
+  function updateCartCounter(count) {
+    const cartCounter = document.getElementById('cartCounter');
+    if (cartCounter) {
+      cartCounter.textContent = count;
+      
+      if (count > 0) {
+        cartCounter.classList.remove('is-hidden');
+      } else {
+        cartCounter.classList.add('is-hidden');
+      }
+    }
+  }
+  
+  // Función para obtener el token CSRF
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
   }
 </script>
 {% endblock %}
