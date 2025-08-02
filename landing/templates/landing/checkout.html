@@ -1,0 +1,181 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}Finalizar Compra - INSERF{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="title is-2 mb-5" data-aos="fade-right">
+      <span class="icon-text">
+        <span class="icon has-text-primary">
+          <i class="fas fa-credit-card"></i>
+        </span>
+        <span>Finalizar Compra</span>
+      </span>
+    </h1>
+    
+    <div class="columns">
+      <!-- Formulario de checkout -->
+      <div class="column is-8">
+        <form method="post" action="{% url 'landing:process_checkout' %}" id="checkout-form">
+          {% csrf_token %}
+          
+          <div class="box p-5 mb-5" data-aos="fade-up">
+            <h3 class="title is-4 mb-4">Información de Envío</h3>
+            
+            {% if form.non_field_errors %}
+              <div class="notification is-danger">
+                {{ form.non_field_errors }}
+              </div>
+            {% endif %}
+            
+            <div class="field">
+              <label class="label">Empresa</label>
+              <div class="control">
+                <input class="input" type="text" name="company_name" value="{{ client.company_name }}" required>
+              </div>
+              {% if form.company_name.errors %}
+                <p class="help is-danger">{{ form.company_name.errors }}</p>
+              {% endif %}
+            </div>
+            
+            <div class="field">
+              <label class="label">RUT</label>
+              <div class="control">
+                <input class="input" type="text" name="tax_id" value="{{ client.tax_id }}" required>
+              </div>
+              {% if form.tax_id.errors %}
+                <p class="help is-danger">{{ form.tax_id.errors }}</p>
+              {% endif %}
+            </div>
+            
+            <div class="field">
+              <label class="label">Dirección de Envío</label>
+              <div class="control">
+                <input class="input" type="text" name="address" value="{{ client.address }}" required>
+              </div>
+              {% if form.address.errors %}
+                <p class="help is-danger">{{ form.address.errors }}</p>
+              {% endif %}
+            </div>
+            
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Teléfono</label>
+                  <div class="control">
+                    <input class="input" type="tel" name="phone" value="{{ client.phone }}" required>
+                  </div>
+                  {% if form.phone.errors %}
+                    <p class="help is-danger">{{ form.phone.errors }}</p>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <label class="label">Email</label>
+                  <div class="control">
+                    <input class="input" type="email" name="email" value="{{ client.email }}" required>
+                  </div>
+                  {% if form.email.errors %}
+                    <p class="help is-danger">{{ form.email.errors }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="box p-5 mb-5" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="title is-4 mb-4">Método de Pago</h3>
+            
+            <div class="field">
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" name="payment_method" value="transferencia" checked>
+                  <span class="ml-2">Transferencia Bancaria</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <div class="control">
+                <label class="radio">
+                  <input type="radio" name="payment_method" value="credito">
+                  <span class="ml-2">Crédito (30 días)</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="notification is-info is-light mt-4">
+              <p>Los detalles para realizar el pago serán enviados por correo electrónico una vez confirmado el pedido.</p>
+            </div>
+          </div>
+          
+          <div class="box p-5 mb-5" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="title is-4 mb-4">Notas del Pedido</h3>
+            
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" name="notes" placeholder="Instrucciones especiales para la entrega o comentarios adicionales"></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <a href="{% url 'landing:cart' %}" class="button is-light">
+                <span class="icon">
+                  <i class="fas fa-arrow-left"></i>
+                </span>
+                <span>Volver al carrito</span>
+              </a>
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-primary">
+                <span class="icon">
+                  <i class="fas fa-check"></i>
+                </span>
+                <span>Confirmar Pedido</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Resumen del pedido -->
+      <div class="column is-4">
+        <div class="box p-5 has-background-light" data-aos="fade-left">
+          <h3 class="title is-4 mb-4">Resumen del Pedido</h3>
+          
+          <div class="content">
+            {% for item in cart_items %}
+              <div class="is-flex is-justify-content-space-between mb-2">
+                <div>
+                  <p class="has-text-weight-bold">{{ item.variant.product.name }}</p>
+                  <p class="is-size-7 has-text-grey">{{ item.variant.color }} / {{ item.variant.size }} x {{ item.quantity }}</p>
+                </div>
+                <p class="has-text-weight-bold">${{ item.subtotal|floatformat:0 }}</p>
+              </div>
+              {% if not forloop.last %}
+                <hr class="my-2">
+              {% endif %}
+            {% endfor %}
+          </div>
+          
+          <hr>
+          
+          <div class="is-flex is-justify-content-space-between">
+            <p class="has-text-weight-bold">Total:</p>
+            <p class="title is-4 has-text-primary">${{ total|floatformat:0 }}</p>
+          </div>
+          
+          <div class="notification is-warning is-light mt-4">
+            <p class="is-size-7">Al confirmar el pedido, acepta nuestros términos y condiciones de venta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

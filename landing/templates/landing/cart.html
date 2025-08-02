@@ -213,8 +213,8 @@
   
   // Función para finalizar la compra
   function checkout() {
-    // Redirigir a la página de checkout o mostrar modal de confirmación
-    alert('Funcionalidad de checkout en desarrollo');
+    // Redirigir a la página de checkout
+    window.location.href = "{% url 'landing:checkout' %}";
   }
   
   // Función para mostrar notificaciones
