@@ -10,8 +10,34 @@ from decimal import Decimal
 from core.models import PurchaseOrder, Product, ProductVariant, Client, Cart, CartItem, OrderItem
 
 
+from django.core.mail import send_mail
+from django.conf import settings
+from .forms import ContactForm
+
 def home(request):
-    return render(request, "landing/home.html")
+    contact_success = False
+    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Try to send an email to site contact (ignore bots via honeypot)
+            if not form.cleaned_data.get('hpot'):
+                subject = "Nuevo contacto desde el sitio INSERF"
+                message = form.cleaned_summary()
+                from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', None) or form.cleaned_data.get('email')
+                recipient_list = [getattr(settings, 'CONTACT_EMAIL', 'contacto@inserf.cl')]
+                try:
+                    send_mail(subject, message, from_email, recipient_list, fail_silently=True)
+                except Exception:
+                    # Silently ignore any email errors to avoid breaking UX
+                    pass
+            contact_success = True
+            form = ContactForm()  # reset form
+    context = {
+        'contact_form': form,
+        'contact_success': contact_success,
+    }
+    return render(request, "landing/home.html", context)
 
 
 class CustomLoginView(LoginView):
