@@ -132,7 +132,7 @@ class OrderItem(models.Model):
     net_unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Price without VAT
     vat_amount = models.DecimalField(max_digits=10, decimal_places=2)  # VAT amount per unit
     subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # Subtotal with VAT
-    net_subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # Subtotal without VAT
+    net_subtotal = models.DecimalField(max_digits=10, decimal_places=2)  # Subtotal without VAT
     vat_subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # VAT amount for subtotal
     variant_details = models.TextField(blank=True)  # Store variant details as text
     
