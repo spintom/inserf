@@ -1,61 +1,18 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-
-# Virtual environment
+*.egg-info/
+.venv/
 venv/
-env/
-ENV/
-env.bak/
-*.env
+.env
 
-# Django stuff:
-*.log
-*.pot
-*.pyc
-local_settings.py
-db.sqlite3
-media/
+# Django
 staticfiles/
+media/
 
-# If using MySQL or PostgreSQL, you can ignore the SQLite database above
+# SQLite (we are PostgreSQL-only now)
+db.sqlite3
+*.sqlite3
 
-# PyCharm project files
-.idea/
-
-# VSCode project files (por si usas a veces VSCode)
-.vscode/
-
-# Python environment variables
-*.env
-.env.*
-
-# Coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-
-# Unit test / test output
-*.mo
-junit*.xml
-test-results/
-test-output/
-
-# Pipenv
-Pipfile.lock
-
-# Migrations
-**/migrations/*.py
-**/migrations/*.pyc
-!*/migrations/__init__.py
-
-# System files
+# OS
 .DS_Store
-Thumbs.db
