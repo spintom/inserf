@@ -1,24 +1,21 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:16
+    container_name: inserf-postgres
     restart: always
     environment:
       POSTGRES_USER: inserf
-      POSTGRES_PASSWORD: sdf1h13d14h5
-      POSTGRES_DB: inserf_db
+      POSTGRES_PASSWORD: inserf123
+      POSTGRES_DB: inserfdb   # <- sin underscore
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - inserf_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U inserf -d inserfdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
-
-networks:
-  inserf_net:
-    name: inserf_net
-    driver: bridge
