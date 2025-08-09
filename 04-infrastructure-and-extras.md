@@ -6,7 +6,7 @@ Este documento describe los elementos adicionales que componen la infraestructur
 
 ## Docker y Entorno de Desarrollo
 
-- Configuración del entorno local basada en SQLite para simplicidad inicial.
+- Configuración del entorno local basada en PostgreSQL (SQLite removido).
 - Pendiente implementación de `Dockerfile` y `docker-compose.yml` para contenerización y despliegue futuro.
 - Se recomienda agregar soporte a PostgreSQL como base de datos de producción.
 
