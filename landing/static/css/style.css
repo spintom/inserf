@@ -48,7 +48,8 @@ main {
 }
 
 .logo-header {
-    max-height: 40px;
+    max-height: 64px !important;
+    transition: max-height 0.25s ease, transform 0.25s ease, filter 0.25s ease;
 }
 
 .logo-footer {
@@ -60,7 +61,7 @@ main {
     position: relative;
     height: 80vh;
     width: 90%;
-    margin: 2rem auto;
+    margin: 6rem auto 2rem;
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
@@ -675,7 +676,7 @@ main {
     .hero-carousel {
         height: 70vh;
         width: 95%;
-        margin: 1rem auto;
+        margin: 4rem auto 1rem;
     }
 
     .carousel-button {
@@ -688,5 +689,131 @@ main {
 
     .section {
         padding: 3rem 1rem;
+    }
+}
+/* Glassmorphism Navbar */
+.navbar.glass-nav {
+    background: rgba(255, 255, 255, 0.30) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.glass-nav .navbar-brand .navbar-item,
+.navbar.glass-nav .navbar-link,
+.navbar.glass-nav .navbar-item {
+    color: #1f2937; /* Gray-800 for good contrast */
+}
+
+.navbar.glass-nav .navbar-burger {
+    color: #111827; /* Gray-900 */
+}
+
+.navbar.glass-nav .navbar-item:hover,
+.navbar.glass-nav .navbar-link:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    color: #111827;
+}
+
+/* Mobile menu glass effect */
+@media (max-width: 1023px) {
+    .navbar.glass-nav .navbar-menu {
+        background: rgba(255, 255, 255, 0.35) !important;
+        -webkit-backdrop-filter: saturate(180%) blur(12px);
+        backdrop-filter: saturate(180%) blur(12px);
+        border-radius: 12px;
+        margin: 0.5rem;
+        padding: 0.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+}
+
+/* Dropdown glass effect */
+.navbar.glass-nav .navbar-dropdown {
+    background: rgba(255, 255, 255, 0.60);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    backdrop-filter: saturate(180%) blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.glass-nav .navbar-dropdown .navbar-item:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Fallback when backdrop-filter is not supported */
+@supports not ((backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))) {
+    .navbar.glass-nav {
+        background: rgba(255, 255, 255, 0.85) !important;
+    }
+    @media (max-width: 1023px) {
+        .navbar.glass-nav .navbar-menu {
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+    }
+    .navbar.glass-nav .navbar-dropdown {
+        background: rgba(255, 255, 255, 0.98);
+    }
+}
+
+/* Solid White Navbar variant */
+.navbar.nav-white {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: padding 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    padding: 0 !important;
+}
+
+.navbar.nav-white .navbar-brand .navbar-item,
+.navbar.nav-white .navbar-item,
+.navbar.nav-white .navbar-link {
+    color: #111827;
+}
+
+.navbar.nav-white .navbar-item:hover,
+.navbar.nav-white .navbar-link:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    color: #000000;
+}
+
+.navbar.nav-white .navbar-burger {
+    color: #111827;
+}
+
+/* On scroll: compact and stronger shadow */
+.navbar.nav-white.is-scrolled {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+    border-bottom-color: rgba(0, 0, 0, 0.10);
+}
+
+/* Shrink logo on scroll */
+.navbar.is-scrolled .logo-header {
+    max-height: 48px;
+}
+
+/* Dropdown and mobile menu backgrounds */
+.navbar.nav-white .navbar-dropdown {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.navbar.nav-white .navbar-dropdown .navbar-item:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+@media (max-width: 1023px) {
+    .navbar.nav-white .navbar-menu {
+        background: #ffffff !important;
+        border-radius: 12px;
+        margin: 0.5rem;
+        padding: 0.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
 }

@@ -26,7 +26,7 @@
 <body class="has-navbar-fixed-top has-sticky-footer">
 
 <!-- Header -->
-<nav class="navbar is-fixed-top is-white has-shadow">
+<nav class="navbar is-fixed-top is-spaced nav-white">
     <div class="container">
         <div class="navbar-brand">
             <a href="/" class="navbar-item">
@@ -153,6 +153,20 @@
                 $target.classList.toggle('is-active');
             });
         });
+
+        // Navbar scroll animation: shrink logo and enhance shadow when scrolling
+        const navbar = document.querySelector('.navbar');
+        const handleScroll = () => {
+            if (!navbar) return;
+            if (window.scrollY > 10) {
+                navbar.classList.add('is-scrolled');
+            } else {
+                navbar.classList.remove('is-scrolled');
+            }
+        };
+        // Trigger on load and on scroll
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
     });
 </script>
 
