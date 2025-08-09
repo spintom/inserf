@@ -129,11 +129,11 @@ class OrderItem(models.Model):
     variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name='order_items')
     quantity = models.PositiveIntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Price with VAT
-    net_unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # Price without VAT
-    vat_amount = models.DecimalField(max_digits=10, decimal_places=2)  # VAT amount per unit
+    net_unit_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # Price without VAT
+    vat_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # VAT amount per unit
     subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # Subtotal with VAT
-    net_subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # Subtotal without VAT
-    vat_subtotal = models.DecimalField(max_digits=12, decimal_places=2)  # VAT amount for subtotal
+    net_subtotal = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)  # Subtotal without VAT
+    vat_subtotal = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)  # VAT amount for subtotal
     variant_details = models.TextField(blank=True)  # Store variant details as text
     
     def save(self, *args, **kwargs):
