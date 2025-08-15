@@ -80,7 +80,7 @@ def catalog(request):
 
         # Keep existing variants data (not strictly needed now that we render inline)
         product.all_variants_data = list(product.variants.values(
-            'id', 'color', 'size', 'weight', 'is_luminous', 'unit_price', 'bulk_price', 'stock', 'has_variants'
+            'id', 'color', 'size', 'weight', 'is_luminous', 'unit_price', 'bulk_price', 'stock', 'has_variants', 'image_url'
         ))
 
         categories[product.category].append(product)

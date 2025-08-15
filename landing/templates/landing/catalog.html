@@ -272,6 +272,35 @@
       });
     });
 
+    // Variant selection and main image switching
+    document.querySelectorAll('.product-item').forEach(card => {
+      const mainImg = card.querySelector('.product-main-image');
+      if (!mainImg) return;
+      const defaultSrc = mainImg.getAttribute('data-default-image') || mainImg.getAttribute('src');
+      card.querySelectorAll('.variant-row').forEach(row => {
+        const activate = () => {
+          if (row.classList.contains('has-background-light')) return; // ignore out of stock
+          const imgUrl = row.getAttribute('data-variant-image') || defaultSrc;
+          if (imgUrl) mainImg.setAttribute('src', imgUrl);
+          card.querySelectorAll('.variant-row.is-selected').forEach(r => { if (r !== row) r.classList.remove('is-selected'); });
+          row.classList.add('is-selected');
+        };
+        row.addEventListener('click', (e) => {
+          const target = e.target;
+          if (!target) return activate();
+          const tag = target.tagName ? target.tagName.toLowerCase() : '';
+          if (tag === 'button' || tag === 'input' || target.closest('.add-variant-btn') || target.closest('.qty-input')) return;
+          activate();
+        });
+        row.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activate();
+          }
+        });
+      });
+    });
+
     // Enhanced search: product name/brand/category and variant attributes
     const searchInput = document.getElementById('searchInput');
     const productItems = document.querySelectorAll('.product-item');
