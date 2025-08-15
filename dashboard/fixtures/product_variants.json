@@ -4,27 +4,3051 @@
     "pk": 1,
     "fields": {
       "product": 1,
-      "color": "Azul",
-      "weight": 2.5,
-      "size": "Mediano",
+      "color": "0.8g/15pcs",
+      "weight": null,
+      "size": "",
       "is_luminous": false,
-      "stock": 30,
-      "unit_price": "59990.00",
-      "bulk_price": "54990.00"
+      "stock": 3,
+      "unit_price": "9018.90",
+      "bulk_price": "7578.91"
     }
   },
   {
     "model": "core.productvariant",
     "pk": 2,
     "fields": {
-      "product": 2,
-      "color": "Negro",
-      "weight": 3.1,
-      "size": "Grande",
+      "product": 1,
+      "color": "0.8g/5pcs",
+      "weight": null,
+      "size": "",
       "is_luminous": false,
-      "stock": 20,
-      "unit_price": "74990.00",
-      "bulk_price": "69990.00"
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "color": "1.0g/15pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "9018.90",
+      "bulk_price": "7578.91"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 4,
+    "fields": {
+      "product": 1,
+      "color": "1.0g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 5,
+    "fields": {
+      "product": 1,
+      "color": "1.2g/15pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "9018.90",
+      "bulk_price": "7578.91"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 6,
+    "fields": {
+      "product": 1,
+      "color": "1.2g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 7,
+    "fields": {
+      "product": 1,
+      "color": "1.5g/15pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "9018.90",
+      "bulk_price": "7578.91"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 8,
+    "fields": {
+      "product": 1,
+      "color": "1.8g/15pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "9018.90",
+      "bulk_price": "7578.91"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 9,
+    "fields": {
+      "product": 1,
+      "color": "1.8g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 10,
+    "fields": {
+      "product": 1,
+      "color": "2.1g/15pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "9018.90",
+      "bulk_price": "7578.91"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 11,
+    "fields": {
+      "product": 1,
+      "color": "2.1g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 42,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 12,
+    "fields": {
+      "product": 1,
+      "color": "2.5g/15pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 31,
+      "unit_price": "9018.90",
+      "bulk_price": "7578.91"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 13,
+    "fields": {
+      "product": 2,
+      "color": "YELLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "15023.01",
+      "bulk_price": "12624.38"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 14,
+    "fields": {
+      "product": 2,
+      "color": "ORANGE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "15023.01",
+      "bulk_price": "12624.38"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 15,
+    "fields": {
+      "product": 2,
+      "color": "BLACK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 14,
+      "unit_price": "15023.01",
+      "bulk_price": "12624.38"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 16,
+    "fields": {
+      "product": 3,
+      "color": "ORANGE GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 17,
+    "fields": {
+      "product": 3,
+      "color": "GOODMEAL GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 0,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 18,
+    "fields": {
+      "product": 3,
+      "color": "GOODMEAL PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 0,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 19,
+    "fields": {
+      "product": 3,
+      "color": "GLOW CRASH CLEAR KRILL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 20,
+    "fields": {
+      "product": 3,
+      "color": "RED GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 0,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 21,
+    "fields": {
+      "product": 3,
+      "color": "RED CRAB",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 2,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 22,
+    "fields": {
+      "product": 3,
+      "color": "BROWN CRAB",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 0,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 23,
+    "fields": {
+      "product": 4,
+      "color": "ISOME ORANGE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 24,
+    "fields": {
+      "product": 4,
+      "color": "ORANGE GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 25,
+    "fields": {
+      "product": 4,
+      "color": "KATAKUCHI PEARL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 26,
+    "fields": {
+      "product": 4,
+      "color": "GOODMEAL CRISTAL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 27,
+    "fields": {
+      "product": 4,
+      "color": "GOODMEAL GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 28,
+    "fields": {
+      "product": 4,
+      "color": "GOODMEAL PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 29,
+    "fields": {
+      "product": 4,
+      "color": "HOT LIME/GLOW CHARTREUSE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 30,
+    "fields": {
+      "product": 4,
+      "color": "RED GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 31,
+    "fields": {
+      "product": 5,
+      "color": "ISOME ORANGE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 32,
+    "fields": {
+      "product": 5,
+      "color": "ORANGE GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 33,
+    "fields": {
+      "product": 5,
+      "color": "KATAKUCHI PEARL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 34,
+    "fields": {
+      "product": 5,
+      "color": "GOODMEAL CRISTAL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 9,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 35,
+    "fields": {
+      "product": 5,
+      "color": "GOODMEAL GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 48,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 36,
+    "fields": {
+      "product": 5,
+      "color": "GOODMEAL PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 37,
+    "fields": {
+      "product": 5,
+      "color": "HOT LIME/GLOW CHARTREUSE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 38,
+    "fields": {
+      "product": 5,
+      "color": "RED GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 39,
+    "fields": {
+      "product": 6,
+      "color": "APPEAL PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 12,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 40,
+    "fields": {
+      "product": 6,
+      "color": "GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 13,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 41,
+    "fields": {
+      "product": 6,
+      "color": "RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 12,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 42,
+    "fields": {
+      "product": 7,
+      "color": "APPEAL PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 43,
+    "fields": {
+      "product": 7,
+      "color": "GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 44,
+    "fields": {
+      "product": 7,
+      "color": "RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 53,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 45,
+    "fields": {
+      "product": 8,
+      "color": "APPEAL PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 48,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 46,
+    "fields": {
+      "product": 8,
+      "color": "GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 48,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 47,
+    "fields": {
+      "product": 8,
+      "color": "RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 49,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 48,
+    "fields": {
+      "product": 9,
+      "color": "GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 49,
+    "fields": {
+      "product": 9,
+      "color": "KOZAKANA SILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 13,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 50,
+    "fields": {
+      "product": 9,
+      "color": "RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 51,
+    "fields": {
+      "product": 10,
+      "color": "KOZAKANA SILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 52,
+    "fields": {
+      "product": 10,
+      "color": "RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "3149.93",
+      "bulk_price": "2647.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 53,
+    "fields": {
+      "product": 11,
+      "color": "GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "3395.07",
+      "bulk_price": "2853.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 54,
+    "fields": {
+      "product": 11,
+      "color": "KOZAKANA SILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 9,
+      "unit_price": "3395.07",
+      "bulk_price": "2853.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 55,
+    "fields": {
+      "product": 11,
+      "color": "RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 3,
+      "unit_price": "3395.07",
+      "bulk_price": "2853.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 56,
+    "fields": {
+      "product": 12,
+      "color": "0.4g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 57,
+    "fields": {
+      "product": 12,
+      "color": "0.6g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 58,
+    "fields": {
+      "product": 12,
+      "color": "0.8g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 59,
+    "fields": {
+      "product": 12,
+      "color": "1.0g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 60,
+    "fields": {
+      "product": 12,
+      "color": "1.2g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 61,
+    "fields": {
+      "product": 12,
+      "color": "1.5g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 62,
+    "fields": {
+      "product": 12,
+      "color": "1.8g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 63,
+    "fields": {
+      "product": 12,
+      "color": "2.1g/15pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 32,
+      "unit_price": "9019.01",
+      "bulk_price": "7579.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 64,
+    "fields": {
+      "product": 12,
+      "color": "2.1g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 49,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 65,
+    "fields": {
+      "product": 13,
+      "color": "ISOME GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 59,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 66,
+    "fields": {
+      "product": 13,
+      "color": "COLORFUL SABIKI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 59,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 67,
+    "fields": {
+      "product": 13,
+      "color": "IWASHI GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 53,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 68,
+    "fields": {
+      "product": 13,
+      "color": "OKIAMI GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 69,
+    "fields": {
+      "product": 13,
+      "color": "CLEAR GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 59,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 70,
+    "fields": {
+      "product": 13,
+      "color": "CLEAR PRISM NEON",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 59,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 71,
+    "fields": {
+      "product": 13,
+      "color": "CLEAR HL FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 57,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 72,
+    "fields": {
+      "product": 13,
+      "color": "CLEAR RED FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 53,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 73,
+    "fields": {
+      "product": 13,
+      "color": "GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 74,
+    "fields": {
+      "product": 13,
+      "color": "GLOW ORANGE/GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 75,
+    "fields": {
+      "product": 13,
+      "color": "GLOW CHART",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 76,
+    "fields": {
+      "product": 13,
+      "color": "SPARKLE IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 59,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 77,
+    "fields": {
+      "product": 13,
+      "color": "CHIRIMEN MONSTER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 78,
+    "fields": {
+      "product": 13,
+      "color": "HITOMAME PEARL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 59,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 79,
+    "fields": {
+      "product": 13,
+      "color": "PEACH SOUR",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 59,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 80,
+    "fields": {
+      "product": 13,
+      "color": "ONI GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 53,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 81,
+    "fields": {
+      "product": 14,
+      "color": "ISOME GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 82,
+    "fields": {
+      "product": 14,
+      "color": "COLORFUL SABIKI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 83,
+    "fields": {
+      "product": 14,
+      "color": "IWASHI GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 84,
+    "fields": {
+      "product": 14,
+      "color": "OKIAMI GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 85,
+    "fields": {
+      "product": 14,
+      "color": "CLEAR GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 86,
+    "fields": {
+      "product": 14,
+      "color": "CLEAR PRISM NEON",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 87,
+    "fields": {
+      "product": 14,
+      "color": "CLEAR HL FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 88,
+    "fields": {
+      "product": 14,
+      "color": "CLEAR RED FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 89,
+    "fields": {
+      "product": 14,
+      "color": "GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 90,
+    "fields": {
+      "product": 14,
+      "color": "GLOW ORANGE/GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 56,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 91,
+    "fields": {
+      "product": 14,
+      "color": "GLOW CHART",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 57,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 92,
+    "fields": {
+      "product": 14,
+      "color": "SPARKLE IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 57,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 93,
+    "fields": {
+      "product": 14,
+      "color": "CHIRIMEN MONSTER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 94,
+    "fields": {
+      "product": 14,
+      "color": "HITOMAME PEARL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 50,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 95,
+    "fields": {
+      "product": 14,
+      "color": "PEACH SOUR",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 96,
+    "fields": {
+      "product": 14,
+      "color": "ONI GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 97,
+    "fields": {
+      "product": 15,
+      "color": "0.4g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 98,
+    "fields": {
+      "product": 15,
+      "color": "0.6g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 99,
+    "fields": {
+      "product": 15,
+      "color": "0.8g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 100,
+    "fields": {
+      "product": 15,
+      "color": "1.0g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 101,
+    "fields": {
+      "product": 15,
+      "color": "1.2g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 0,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 102,
+    "fields": {
+      "product": 15,
+      "color": "1.5g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 103,
+    "fields": {
+      "product": 15,
+      "color": "1.8g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 104,
+    "fields": {
+      "product": 15,
+      "color": "2.1g/5pcs",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 42,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 105,
+    "fields": {
+      "product": 16,
+      "color": "HL NANOIWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 106,
+    "fields": {
+      "product": 16,
+      "color": "HL NANOSILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 107,
+    "fields": {
+      "product": 16,
+      "color": "HL PINK BACK SILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 108,
+    "fields": {
+      "product": 16,
+      "color": "HL RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 109,
+    "fields": {
+      "product": 16,
+      "color": "AMIAMIGLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 110,
+    "fields": {
+      "product": 16,
+      "color": "AMIAMIBALL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 111,
+    "fields": {
+      "product": 16,
+      "color": "IKANA GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 112,
+    "fields": {
+      "product": 17,
+      "color": "HL NANOIWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 113,
+    "fields": {
+      "product": 17,
+      "color": "HL NANOSILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 114,
+    "fields": {
+      "product": 17,
+      "color": "HL PINK BACK SILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 115,
+    "fields": {
+      "product": 17,
+      "color": "HL RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 116,
+    "fields": {
+      "product": 17,
+      "color": "AMIAMIGLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 117,
+    "fields": {
+      "product": 17,
+      "color": "AMIAMIBALL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 118,
+    "fields": {
+      "product": 17,
+      "color": "IKANA GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 119,
+    "fields": {
+      "product": 17,
+      "color": "GLOW CHART",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 120,
+    "fields": {
+      "product": 18,
+      "color": "HL PINK BACK SILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 121,
+    "fields": {
+      "product": 18,
+      "color": "HL RED GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 39,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 122,
+    "fields": {
+      "product": 18,
+      "color": "AMIAMIGLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 39,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 123,
+    "fields": {
+      "product": 18,
+      "color": "AMIAMIBALL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 34,
+      "unit_price": "3531.53",
+      "bulk_price": "2967.67"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 124,
+    "fields": {
+      "product": 19,
+      "color": "RED & GOLD/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "4022.02",
+      "bulk_price": "3379.85"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 125,
+    "fields": {
+      "product": 19,
+      "color": "IWASHI/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 27,
+      "unit_price": "4022.02",
+      "bulk_price": "3379.85"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 126,
+    "fields": {
+      "product": 19,
+      "color": "SHIRASU SILVER/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 27,
+      "unit_price": "4022.02",
+      "bulk_price": "3379.85"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 127,
+    "fields": {
+      "product": 19,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 27,
+      "unit_price": "4022.02",
+      "bulk_price": "3379.85"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 128,
+    "fields": {
+      "product": 19,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 26,
+      "unit_price": "4022.02",
+      "bulk_price": "3379.85"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 129,
+    "fields": {
+      "product": 20,
+      "color": "RED & GOLD/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 34,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 130,
+    "fields": {
+      "product": 20,
+      "color": "IWASHI/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 24,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 131,
+    "fields": {
+      "product": 20,
+      "color": "GLOW STRIPE/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 23,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 132,
+    "fields": {
+      "product": 20,
+      "color": "SHIRASU SILVER/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 27,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 133,
+    "fields": {
+      "product": 20,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 21,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 134,
+    "fields": {
+      "product": 20,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 19,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 135,
+    "fields": {
+      "product": 21,
+      "color": "RED & GOLD/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 32,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 136,
+    "fields": {
+      "product": 21,
+      "color": "IWASHI/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 22,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 137,
+    "fields": {
+      "product": 21,
+      "color": "SHIRASU SILVER/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 22,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 138,
+    "fields": {
+      "product": 21,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 19,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 139,
+    "fields": {
+      "product": 21,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 18,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 140,
+    "fields": {
+      "product": 22,
+      "color": "RED & GOLD/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 141,
+    "fields": {
+      "product": 22,
+      "color": "IWASHI/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 142,
+    "fields": {
+      "product": 22,
+      "color": "GLOW STRIPE/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 143,
+    "fields": {
+      "product": 22,
+      "color": "SHIRASU SILVER/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 144,
+    "fields": {
+      "product": 22,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 145,
+    "fields": {
+      "product": 22,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 28,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 146,
+    "fields": {
+      "product": 23,
+      "color": "RED & GOLD/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 34,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 147,
+    "fields": {
+      "product": 23,
+      "color": "IWASHI/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 34,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 148,
+    "fields": {
+      "product": 23,
+      "color": "SHIRASU SILVER/MAGMA WAVE HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 35,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 149,
+    "fields": {
+      "product": 23,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 34,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 150,
+    "fields": {
+      "product": 23,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "3811.81",
+      "bulk_price": "3203.20"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 151,
+    "fields": {
+      "product": 24,
+      "color": "IWASHI GLOW BELLY/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 24,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 152,
+    "fields": {
+      "product": 24,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 25,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 153,
+    "fields": {
+      "product": 24,
+      "color": "BLUE PINK/GLOW DOT",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 23,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 154,
+    "fields": {
+      "product": 24,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 27,
+      "unit_price": "4232.23",
+      "bulk_price": "3556.49"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 155,
+    "fields": {
+      "product": 25,
+      "color": "IWASHI GLOW BELLY/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 24,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 156,
+    "fields": {
+      "product": 25,
+      "color": "GLOW PINK & PURPLE/LENS HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 157,
+    "fields": {
+      "product": 25,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 29,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 158,
+    "fields": {
+      "product": 25,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 28,
+      "unit_price": "4652.65",
+      "bulk_price": "3909.79"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 159,
+    "fields": {
+      "product": 26,
+      "color": "IWASHI GLOW BELLY/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 25,
+      "unit_price": "4876.87",
+      "bulk_price": "4098.21"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 160,
+    "fields": {
+      "product": 26,
+      "color": "HIRAMELON",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "4876.87",
+      "bulk_price": "4098.21"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 161,
+    "fields": {
+      "product": 26,
+      "color": "PINK BACK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 19,
+      "unit_price": "4876.87",
+      "bulk_price": "4098.21"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 162,
+    "fields": {
+      "product": 26,
+      "color": "BLUE PINK/BORDER HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 25,
+      "unit_price": "4876.87",
+      "bulk_price": "4098.21"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 163,
+    "fields": {
+      "product": 26,
+      "color": "CHO HIRAME STRIPE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "4876.87",
+      "bulk_price": "4098.21"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 164,
+    "fields": {
+      "product": 27,
+      "color": "RED & GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 39,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 165,
+    "fields": {
+      "product": 27,
+      "color": "IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 39,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 166,
+    "fields": {
+      "product": 27,
+      "color": "SURF ORANGE GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 167,
+    "fields": {
+      "product": 27,
+      "color": "SURF PINK GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 168,
+    "fields": {
+      "product": 27,
+      "color": "JASPER BAIT",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 169,
+    "fields": {
+      "product": 27,
+      "color": "PINK BACK SILVER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 170,
+    "fields": {
+      "product": 27,
+      "color": "BLUE & PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 39,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 171,
+    "fields": {
+      "product": 27,
+      "color": "CHO SAGOSHI SPARK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 172,
+    "fields": {
+      "product": 28,
+      "color": "RED & GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 37,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 173,
+    "fields": {
+      "product": 28,
+      "color": "IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 38,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 174,
+    "fields": {
+      "product": 28,
+      "color": "SURF ORANGE GOLD",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 7,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 175,
+    "fields": {
+      "product": 28,
+      "color": "JASPER BAIT",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 9,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 176,
+    "fields": {
+      "product": 28,
+      "color": "BLUE & PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 33,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 177,
+    "fields": {
+      "product": 28,
+      "color": "CHO SAGOSHI SPARK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 9,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 178,
+    "fields": {
+      "product": 29,
+      "color": "IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 35,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 179,
+    "fields": {
+      "product": 29,
+      "color": "JASPER BAIT",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 180,
+    "fields": {
+      "product": 29,
+      "color": "BLUE & PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 32,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 181,
+    "fields": {
+      "product": 29,
+      "color": "CHO SAGOSHI SPARK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 2,
+      "unit_price": "8170.16",
+      "bulk_price": "6865.68"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 182,
+    "fields": {
+      "product": 30,
+      "color": "IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 38,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 183,
+    "fields": {
+      "product": 30,
+      "color": "UROKO HL CHARTREUSE BELLY IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 184,
+    "fields": {
+      "product": 30,
+      "color": "UROKO HL SEGURO IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 185,
+    "fields": {
+      "product": 30,
+      "color": "KONOSHIRO/LENS HL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 10,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 186,
+    "fields": {
+      "product": 30,
+      "color": "PINK BACK IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 31,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 187,
+    "fields": {
+      "product": 30,
+      "color": "BLUE & PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 31,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 188,
+    "fields": {
+      "product": 30,
+      "color": "CHO SAGOSHI SPARK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 4,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 189,
+    "fields": {
+      "product": 30,
+      "color": "CHO SAGOSHI PINK SPARK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 6,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 190,
+    "fields": {
+      "product": 30,
+      "color": "WANNAI GREEN",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 5,
+      "unit_price": "13383.37",
+      "bulk_price": "11246.53"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 191,
+    "fields": {
+      "product": 31,
+      "color": "IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 38,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 192,
+    "fields": {
+      "product": 31,
+      "color": "UROKO HL CHARTREUSE BELLY IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 11,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 193,
+    "fields": {
+      "product": 31,
+      "color": "UROKO HL SEGURO IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 9,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 194,
+    "fields": {
+      "product": 31,
+      "color": "PINK BACK IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 32,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 195,
+    "fields": {
+      "product": 31,
+      "color": "BLUE & PINK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 34,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 196,
+    "fields": {
+      "product": 31,
+      "color": "MAZUME GOLD BAIT",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 9,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 197,
+    "fields": {
+      "product": 31,
+      "color": "NIGORI GREEN GOLD APPEAL",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 10,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 198,
+    "fields": {
+      "product": 31,
+      "color": "CHO SAGOSHI PINK SPARK",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 9,
+      "unit_price": "12332.32",
+      "bulk_price": "10363.29"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 199,
+    "fields": {
+      "product": 32,
+      "color": "COLORFUL SABIKI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 200,
+    "fields": {
+      "product": 32,
+      "color": "CLEAR RED FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 201,
+    "fields": {
+      "product": 32,
+      "color": "GLOW ORANGE/GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 44,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 202,
+    "fields": {
+      "product": 32,
+      "color": "GLOW CHART",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 44,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 203,
+    "fields": {
+      "product": 32,
+      "color": "SPARKLE IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 50,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 204,
+    "fields": {
+      "product": 32,
+      "color": "CHIRIMEN MONSTER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 205,
+    "fields": {
+      "product": 32,
+      "color": "BOTOM BACHI GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 206,
+    "fields": {
+      "product": 32,
+      "color": "ONI GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 42,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 207,
+    "fields": {
+      "product": 32,
+      "color": "JOYATO ORANGE/CLEAR",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 208,
+    "fields": {
+      "product": 33,
+      "color": "NANIWA BLUE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 56,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 209,
+    "fields": {
+      "product": 33,
+      "color": "COLORFUL SABIKI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 56,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 210,
+    "fields": {
+      "product": 33,
+      "color": "OKIAMI GLOW CRUSH",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 49,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 211,
+    "fields": {
+      "product": 33,
+      "color": "CLEAR HL FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 212,
+    "fields": {
+      "product": 33,
+      "color": "CLEAR RED FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 52,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 213,
+    "fields": {
+      "product": 33,
+      "color": "GLOW ORANGE/GOLD FLAKE",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 56,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 214,
+    "fields": {
+      "product": 33,
+      "color": "SPARKLE IWASHI",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 57,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 215,
+    "fields": {
+      "product": 33,
+      "color": "CHIRIMEN MONSTER",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 58,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 216,
+    "fields": {
+      "product": 33,
+      "color": "PEACH SOUR",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 56,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 217,
+    "fields": {
+      "product": 33,
+      "color": "BOTOM BACHI GLOW",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 57,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
+    }
+  },
+  {
+    "model": "core.productvariant",
+    "pk": 218,
+    "fields": {
+      "product": 33,
+      "color": "JOYATO ORANGE/CLEAR",
+      "weight": null,
+      "size": "",
+      "is_luminous": false,
+      "stock": 51,
+      "unit_price": "3492.65",
+      "bulk_price": "2935.00"
     }
   }
 ]

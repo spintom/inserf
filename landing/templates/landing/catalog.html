@@ -1,5 +1,6 @@
 {% extends 'landing/base.html' %}
 {% load static %}
+{% load currency %}
 
 {% block title %}Catálogo de Productos - INSERF{% endblock %}
 
@@ -59,9 +60,9 @@
                   <div class="card-image">
                     <figure class="image is-4by3">
                       {% if product.image_url %}
-                        <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                        <img src="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy">
                       {% else %}
-                        <img src="{% static 'images/banner1.jpg' %}" alt="Imagen no disponible">
+                        <img src="{% static 'images/banner1.jpg' %}" alt="Imagen no disponible" loading="lazy">
                       {% endif %}
                     </figure>
                   </div>
@@ -83,20 +84,122 @@
                         <span class="tag is-success">Producto estándar</span>
                       {% endif %}
                     </div>
-                    
-                    <!-- Store variant data for JavaScript -->
-                    <div class="is-hidden" data-variants='{{ product.all_variants_data|safe }}'></div>
-                  </div>
-                  <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="showProductDetails('{{ product.id }}')">
-                      <span class="icon"><i class="fas fa-eye"></i></span>
-                      <span>Ver detalles</span>
-                    </a>
-                    <a href="#" class="card-footer-item has-text-success" onclick="addToCart('{{ product.id }}')">
-                      <span class="icon"><i class="fas fa-cart-plus"></i></span>
-                      <span>Agregar</span>
-                    </a>
-                  </footer>
+
+                    <!-- Variantes inline: Desktop table -->
+                    <div class="mt-4 variant-list" aria-label="Variantes de {{ product.name }}">
+                      {% if product.variants.all %}
+                        <div class="is-hidden-mobile">
+                          <table class="table is-fullwidth is-striped is-narrow">
+                            <thead>
+                              <tr>
+                                <th>Color</th>
+                                <th>Tamaño</th>
+                                <th>Peso</th>
+                                <th>¿Luminoso?</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for variant in product.variants.all %}
+                                {% comment %} Hide or disable when stock 0 {% endcomment %}
+                                <tr class="variant-row {% if variant.stock == 0 %}has-text-grey-light{% endif %}" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}" >
+                                  <td>
+                                    {% if variant.color %}
+                                      <span>{{ variant.color }}</span>
+                                    {% else %}
+                                      <span class="has-text-grey">—</span>
+                                    {% endif %}
+                                  </td>
+                                  <td>{{ variant.size|default:'—' }}</td>
+                                  <td>{% if variant.weight %}{{ variant.weight }} g{% else %}—{% endif %}</td>
+                                  <td>{% if variant.is_luminous %}Sí{% else %}No{% endif %}</td>
+                                  <td>
+                                    {% if variant.stock > 0 %}
+                                      {{ variant.stock }}
+                                    {% else %}
+                                      <span class="tag is-light is-danger">Sin stock</span>
+                                    {% endif %}
+                                  </td>
+                                  <td>
+                                    <span>{{ variant.unit_price|clp }}</span>
+                                    {% if variant.bulk_price and variant.bulk_price|floatformat != '0' %}
+                                      <span class="has-text-grey is-size-7">(mayor: {{ variant.bulk_price|clp }})</span>
+                                    {% endif %}
+                                  </td>
+                                  <td class="has-text-right">
+                                    <div class="field has-addons is-justify-content-flex-end">
+                                      <p class="control">
+                                        <input class="input is-small qty-input" type="number" min="1" max="{{ variant.stock }}" value="1" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Cantidad {{ product.name }} {{ variant.color }} {{ variant.size }}">
+                                      </p>
+                                      <p class="control">
+                                        <button class="button is-small is-success add-variant-btn" data-variant-id="{{ variant.id }}" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Agregar {{ product.name }} {% if variant.color %}{{ variant.color }}{% endif %} {% if variant.size %}{{ variant.size }}{% endif %} al carrito">
+                                          <span class="icon"><i class="fas fa-cart-plus"></i></span>
+                                          <span>Agregar</span>
+                                        </button>
+                                      </p>
+                                    </div>
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <!-- Variantes inline: Mobile stacked -->
+                        <div class="is-hidden-tablet">
+                          {% for variant in product.variants.all %}
+                            <div class="box py-3 px-3 mb-2 {% if variant.stock == 0 %}has-background-light has-text-grey{% endif %} variant-row" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}">
+                              <div class="is-flex is-justify-content-space-between is-align-items-center">
+                                <div>
+                                  <div class="mb-1">
+                                    {% if variant.color %}
+                                      <strong>{{ variant.color }}</strong>
+                                    {% else %}
+                                      <strong>Estándar</strong>
+                                    {% endif %}
+                                  </div>
+                                  <div class="is-size-7 has-text-grey">
+                                    <span>{% if variant.size %}Tamaño: {{ variant.size }}{% else %}Tamaño: —{% endif %}</span>
+                                    <span class="ml-2">{% if variant.weight %}Peso: {{ variant.weight }} g{% else %}Peso: —{% endif %}</span>
+                                    <span class="ml-2">{% if variant.is_luminous %}Luminoso{% else %}No luminoso{% endif %}</span>
+                                  </div>
+                                  <div class="mt-1">
+                                    <span class="mr-2">{{ variant.unit_price|clp }}</span>
+                                    {% if variant.bulk_price and variant.bulk_price|floatformat != '0' %}
+                                      <span class="has-text-grey is-size-7">(mayor: {{ variant.bulk_price|clp }})</span>
+                                    {% endif %}
+                                  </div>
+                                  <div class="mt-1 is-size-7">
+                                    {% if variant.stock > 0 %}
+                                      Stock: {{ variant.stock }}
+                                    {% else %}
+                                      <span class="tag is-light is-danger">Sin stock</span>
+                                    {% endif %}
+                                  </div>
+                                </div>
+                                <div class="ml-3" style="min-width: 130px;">
+                                  <div class="field has-addons is-justify-content-flex-end">
+                                    <p class="control">
+                                      <input class="input is-small qty-input" type="number" min="1" max="{{ variant.stock }}" value="1" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Cantidad {{ product.name }} {{ variant.color }} {{ variant.size }}">
+                                    </p>
+                                    <p class="control">
+                                      <button class="button is-small is-success add-variant-btn" data-variant-id="{{ variant.id }}" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Agregar {{ product.name }} {% if variant.color %}{{ variant.color }}{% endif %} {% if variant.size %}{{ variant.size }}{% endif %} al carrito">
+                                        <span class="icon"><i class="fas fa-cart-plus"></i></span>
+                                      </button>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% else %}
+                        <p class="has-text-grey">Sin variantes disponibles.</p>
+                      {% endif %}
+                    </div>
+                  </div><!-- end card-content -->
                 </div>
               </div>
             {% endfor %}
@@ -117,318 +220,11 @@
   </div>
 </section>
 
-<!-- Modal para detalles del producto -->
-<div class="modal" id="productModal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title" id="modalTitle">Detalles del Producto</p>
-      <button class="delete" aria-label="close" onclick="closeModal()"></button>
-    </header>
-    <section class="modal-card-body" id="modalContent">
-      <!-- El contenido se cargará dinámicamente -->
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-primary" onclick="closeModal()">Cerrar</button>
-    </footer>
-  </div>
-</div>
+<!-- Toaster container -->
+<div id="toaster" style="position: fixed; top: 80px; right: 16px; z-index: 2000; display: none;"></div>
 
 <script>
-  // Función para filtrar productos
-  document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    
-    searchInput.addEventListener('keyup', function() {
-      const searchTerm = this.value.toLowerCase();
-      const productItems = document.querySelectorAll('.product-item');
-      
-      productItems.forEach(item => {
-        const productName = item.querySelector('.title').textContent.toLowerCase();
-        const productBrand = item.querySelector('.subtitle').textContent.toLowerCase();
-        
-        if (productName.includes(searchTerm) || productBrand.includes(searchTerm)) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-  });
-  
-  // Funciones para el modal
-  function showProductDetails(productId) {
-    // En una implementación real, aquí se cargarían los detalles del producto mediante AJAX
-    const modal = document.getElementById('productModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalContent = document.getElementById('modalContent');
-    
-    // Simulación de contenido
-    modalTitle.textContent = 'Cargando detalles...';
-    modalContent.innerHTML = '<div class="has-text-centered"><span class="icon is-large"><i class="fas fa-spinner fa-pulse fa-3x"></i></span></div>';
-    
-    modal.classList.add('is-active');
-    
-    // Simulación de carga de datos
-    setTimeout(() => {
-      // Aquí se cargarían los datos reales del producto
-      const products = document.querySelectorAll('.product-item');
-      let productName = '';
-      
-      products.forEach(product => {
-        if (product.querySelector('.card-footer-item').getAttribute('onclick').includes(productId)) {
-          productName = product.querySelector('.title').textContent;
-        }
-      });
-      
-      modalTitle.textContent = productName;
-      
-      // In a real implementation, this would be an AJAX call to get product variants
-      // For now, we'll fetch them from the page data
-      let hasVariants = false;
-      let variantOptions = '';
-      let defaultVariantId = '';
-      
-      // Find the product card to check if it has variants
-      products.forEach(product => {
-        if (product.querySelector('.card-footer-item').getAttribute('onclick').includes(productId)) {
-          // Check if product has variants
-          const variantTag = product.querySelector('.tag.is-info');
-          const standardTag = product.querySelector('.tag.is-success');
-          hasVariants = variantTag !== null;
-          const isStandardProduct = standardTag !== null;
-          
-          // Get the variants data from the hidden div
-          const variantsDiv = product.querySelector('div[data-variants]');
-          if (variantsDiv) {
-            try {
-              const variants = JSON.parse(variantsDiv.getAttribute('data-variants'));
-              
-              // Process each variant
-              variants.forEach(variant => {
-                // Create display text based on variant type
-                let displayText;
-                if (variant.has_variants) {
-                  // Build display text with available attributes
-                  let parts = [];
-                  if (variant.color) parts.push(`Color: ${variant.color}`);
-                  if (variant.size) parts.push(`Tamaño: ${variant.size}`);
-                  if (variant.weight) parts.push(`Peso: ${variant.weight}g`);
-                  if (variant.is_luminous) parts.push("Luminoso");
-                  
-                  displayText = `${parts.join(', ')} - $${variant.unit_price}`;
-                } else {
-                  // Standard product without variants
-                  displayText = `Producto estándar - $${variant.unit_price}`;
-                }
-                
-                // Add option to select
-                variantOptions += `<option value="${variant.id}">${displayText}</option>`;
-                
-                // Set the first variant as default
-                if (!defaultVariantId) {
-                  defaultVariantId = variant.id;
-                }
-              });
-            } catch (e) {
-              console.error('Error parsing variants:', e);
-              
-              // Fallback to simulated variants if parsing fails
-              const fallbackVariants = [
-                { id: 1, color: 'Rojo', size: 'Grande', unit_price: 12500, stock: 10, has_variants: true },
-                { id: 2, color: 'Azul', size: 'Mediano', unit_price: 10800, stock: 5, has_variants: true },
-                { id: 3, color: 'Verde', size: 'Pequeño', unit_price: 9200, stock: 8, has_variants: true }
-              ];
-              
-              fallbackVariants.forEach(variant => {
-                let displayText = variant.has_variants 
-                  ? `${variant.color} / ${variant.size} - $${variant.unit_price}` 
-                  : `Producto estándar - $${variant.unit_price}`;
-                variantOptions += `<option value="${variant.id}">${displayText}</option>`;
-                
-                if (!defaultVariantId) {
-                  defaultVariantId = variant.id;
-                }
-              });
-            }
-          }
-        }
-      });
-      
-      modalContent.innerHTML = `
-        <div class="columns">
-          <div class="column is-4">
-            <figure class="image is-4by3">
-              <img src="{% static 'images/banner1.jpg' %}" alt="${productName}">
-            </figure>
-          </div>
-          <div class="column">
-            <p><strong>Descripción:</strong> Información detallada del producto.</p>
-            <p class="mt-3"><strong>Características:</strong></p>
-            <ul>
-              <li>Característica 1</li>
-              <li>Característica 2</li>
-              <li>Característica 3</li>
-            </ul>
-            
-            <form id="addToCartForm" class="mt-5">
-              <input type="hidden" name="product_id" value="${productId}">
-              
-              ${hasVariants ? `
-              <div class="field">
-                <label class="label">Variante</label>
-                <div class="control">
-                  <div class="select is-fullwidth">
-                    <select name="variant_id" required>
-                      <option value="">Selecciona una variante</option>
-                      ${variantOptions}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              ` : `
-              <div class="notification is-info is-light">
-                <p>Este producto no tiene variantes.</p>
-              </div>
-              <input type="hidden" name="variant_id" value="${defaultVariantId}">
-              `}
-              
-              <div class="field">
-                <label class="label">Cantidad</label>
-                <div class="control">
-                  <input class="input" type="number" name="quantity" min="1" value="1" required>
-                </div>
-              </div>
-              
-              <div class="field mt-4">
-                <div class="control">
-                  <button type="button" class="button is-success is-fullwidth" onclick="addToCartFromModal()">
-                    <span class="icon"><i class="fas fa-cart-plus"></i></span>
-                    <span>Agregar al carrito</span>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      `;
-    }, 1000);
-  }
-  
-  function closeModal() {
-    const modal = document.getElementById('productModal');
-    modal.classList.remove('is-active');
-  }
-  
-  // Función para agregar al carrito desde la tarjeta del producto
-  function addToCart(productId) {
-    // Abrir el modal de detalles para seleccionar variante y cantidad
-    showProductDetails(productId);
-  }
-  
-  // Función para agregar al carrito desde el modal
-  function addToCartFromModal() {
-    const form = document.getElementById('addToCartForm');
-    const productId = form.querySelector('[name="product_id"]').value;
-    const variantId = form.querySelector('[name="variant_id"]').value;
-    const quantity = form.querySelector('[name="quantity"]').value;
-    
-    if (!variantId) {
-      alert('Por favor selecciona una variante');
-      return;
-    }
-    
-    if (quantity < 1) {
-      alert('La cantidad debe ser al menos 1');
-      return;
-    }
-    
-    // Enviar datos al servidor mediante fetch
-    fetch('{% url "landing:add_to_cart" %}', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken')
-      },
-      body: JSON.stringify({
-        product_id: productId,
-        variant_id: variantId,
-        quantity: quantity
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        // Mostrar notificación de éxito
-        showNotification('Producto agregado al carrito', 'success');
-        
-        // Actualizar contador del carrito si existe
-        updateCartCounter(data.cart_count);
-        
-        // Cerrar el modal
-        closeModal();
-      } else {
-        // Mostrar error
-        showNotification(data.error || 'Error al agregar al carrito', 'danger');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      showNotification('Error al procesar la solicitud', 'danger');
-    });
-  }
-  
-  // Función para mostrar notificaciones
-  function showNotification(message, type) {
-    // Crear notificación
-    const notification = document.createElement('div');
-    notification.className = `notification is-${type} is-light`;
-    notification.style.position = 'fixed';
-    notification.style.top = '20px';
-    notification.style.right = '20px';
-    notification.style.zIndex = '9999';
-    notification.style.maxWidth = '300px';
-    
-    // Agregar botón de cierre
-    const closeButton = document.createElement('button');
-    closeButton.className = 'delete';
-    closeButton.addEventListener('click', () => {
-      document.body.removeChild(notification);
-    });
-    
-    // Agregar mensaje
-    const messageText = document.createTextNode(message);
-    
-    // Ensamblar notificación
-    notification.appendChild(closeButton);
-    notification.appendChild(messageText);
-    
-    // Agregar al DOM
-    document.body.appendChild(notification);
-    
-    // Auto-cerrar después de 5 segundos
-    setTimeout(() => {
-      if (document.body.contains(notification)) {
-        document.body.removeChild(notification);
-      }
-    }, 5000);
-  }
-  
-  // Función para actualizar el contador del carrito
-  function updateCartCounter(count) {
-    const cartCounter = document.getElementById('cartCounter');
-    if (cartCounter) {
-      cartCounter.textContent = count;
-      
-      if (count > 0) {
-        cartCounter.classList.remove('is-hidden');
-      } else {
-        cartCounter.classList.add('is-hidden');
-      }
-    }
-  }
-  
-  // Función para obtener el token CSRF
+  // CSRF helper
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -443,5 +239,92 @@
     }
     return cookieValue;
   }
+
+  function showToast(message, type = 'is-success') {
+    const container = document.getElementById('toaster');
+    container.innerHTML = `<div class="notification ${type}">${message}</div>`;
+    container.style.display = 'block';
+    setTimeout(() => { container.style.display = 'none'; }, 3000);
+  }
+
+  function updateCartCounter(count) {
+    const counter = document.getElementById('cartCounter');
+    if (!counter) return;
+    counter.textContent = String(count);
+    if (count > 0) {
+      counter.classList.remove('is-hidden');
+    } else {
+      counter.classList.add('is-hidden');
+    }
+  }
+
+  async function addVariantToCart(variantId, quantity) {
+    try {
+      const response = await fetch('{% url "landing:add_to_cart" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({ variant_id: variantId, quantity: quantity })
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'No se pudo agregar. Intenta de nuevo.');
+      }
+
+      updateCartCounter(data.cart_count ?? 0);
+      showToast('Agregado al carrito', 'is-success');
+    } catch (err) {
+      showToast(err.message || 'No se pudo agregar. Intenta de nuevo.', 'is-danger');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Bind add-to-cart buttons
+    document.querySelectorAll('.add-variant-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const variantId = this.getAttribute('data-variant-id');
+        let qtyInput = null;
+        // Try to find the nearest qty input in the same control group
+        const field = this.closest('.field');
+        if (field) qtyInput = field.querySelector('.qty-input');
+        if (!qtyInput) {
+          // fallback: search up to the card
+          qtyInput = this.closest('.card, .box')?.querySelector('.qty-input');
+        }
+        let quantity = parseInt(qtyInput?.value || '1', 10);
+        const max = parseInt(qtyInput?.getAttribute('max') || '9999', 10);
+        if (isNaN(quantity) || quantity < 1) quantity = 1;
+        if (quantity > max) quantity = max;
+        if (qtyInput) qtyInput.value = quantity;
+        addVariantToCart(variantId, quantity);
+      });
+    });
+
+    // Enhanced search: product name/brand/category and variant attributes
+    const searchInput = document.getElementById('searchInput');
+    const productItems = document.querySelectorAll('.product-item');
+
+    searchInput.addEventListener('input', function() {
+      const term = this.value.trim().toLowerCase();
+      productItems.forEach(item => {
+        const name = (item.querySelector('.title')?.textContent || '').toLowerCase();
+        const brand = (item.querySelector('.subtitle')?.textContent || '').toLowerCase();
+        const category = (item.querySelector('.tag.is-primary')?.textContent || '').toLowerCase();
+        let match = name.includes(term) || brand.includes(term) || category.includes(term);
+        if (!match) {
+          // Search in variants
+          item.querySelectorAll('.variant-row').forEach(row => {
+            const vtext = (row.getAttribute('data-variant-text') || row.textContent || '').toLowerCase();
+            if (vtext.includes(term)) match = true;
+          });
+        }
+        item.style.display = match ? 'block' : 'none';
+      });
+    });
+  });
 </script>
 {% endblock %}

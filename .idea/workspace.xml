@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f980e5b-5de8-4858-9901-7dc918504500" name="Changes" comment="chore: bump Django version to 5.2.5 in requirements.txt">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="2f980e5b-5de8-4858-9901-7dc918504500" name="Changes" comment="chore: update `.gitignore` and `.idea` configurations&#10;&#10;- Added `.idea/` to `.gitignore` to exclude PyCharm project files.&#10;- Updated `.idea/workspace.xml` with adjustments for configurations and workspace settings.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/fixtures/product_variants.json" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/fixtures/product_variants.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard/fixtures/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/fixtures/products.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/landing/templates/landing/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/landing/templates/landing/catalog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/landing/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/landing/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +35,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Django Server.inserf.executor": "Run",
     "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.manage.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -51,7 +56,38 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django Server.inserf">
+    <configuration name="inserf" type="Python.DjangoServer" factoryName="Django server">
+      <module name="inserf" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="inserf.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12 (inserf)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml" />
       <method v="2" />
@@ -64,6 +100,10 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Django Server.inserf" />
+      <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
@@ -86,7 +126,7 @@
       <option name="presentableId" value="Default" />
       <updated>1755219241591</updated>
       <workItem from="1755219242653" duration="567000" />
-      <workItem from="1755219832867" duration="389000" />
+      <workItem from="1755219832867" duration="2613000" />
     </task>
     <task id="LOCAL-00001" summary="feat(admin): admin">
       <option name="closed" value="true" />
@@ -112,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755220130597</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="chore: update `.gitignore` and `.idea` configurations&#10;&#10;- Added `.idea/` to `.gitignore` to exclude PyCharm project files.&#10;- Updated `.idea/workspace.xml` with adjustments for configurations and workspace settings.">
+      <option name="closed" value="true" />
+      <created>1755220231286</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1755220231286</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +171,10 @@
     <MESSAGE value="chore: update project configuration files to use Python 3.12 SDK&#10;&#10;- Updated `.idea` files to reference Python 3.12 instead of Python 3.9.&#10;- Adjusted workspace settings and added new configuration components." />
     <MESSAGE value="chore: bump Django to 5.2.5 in `requirements.txt`" />
     <MESSAGE value="chore: bump Django version to 5.2.5 in requirements.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: bump Django version to 5.2.5 in requirements.txt" />
+    <MESSAGE value="chore: update `.gitignore` and `.idea` configurations&#10;&#10;- Added `.idea/` to `.gitignore` to exclude PyCharm project files.&#10;- Updated `.idea/workspace.xml` with adjustments for configurations and workspace settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update `.gitignore` and `.idea` configurations&#10;&#10;- Added `.idea/` to `.gitignore` to exclude PyCharm project files.&#10;- Updated `.idea/workspace.xml` with adjustments for configurations and workspace settings." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/inserf$manage.coverage" NAME="manage Coverage Results" MODIFIED="1755220363189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
