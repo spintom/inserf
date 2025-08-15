@@ -43,6 +43,7 @@ class ProductVariant(models.Model):
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     bulk_price = models.DecimalField(max_digits=10, decimal_places=2)
     has_variants = models.BooleanField(default=True)
+    image_url = models.URLField(blank=True)
 
     def __str__(self):
         if not self.has_variants:

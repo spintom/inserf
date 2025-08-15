@@ -65,29 +65,31 @@ def my_orders(request):
 def catalog(request):
     # Get all active products with their variants
     products = Product.objects.filter(is_active=True).prefetch_related('variants')
-    
+
     # Group products by category for better organization
+    from collections import OrderedDict
     categories = {}
     for product in products:
         if product.category not in categories:
             categories[product.category] = []
-        
-        # Check if product has variants with has_variants=False
+
+        # Flags for template logic
         has_standard_variant = product.variants.filter(has_variants=False).exists()
-        
-        # Add a flag to indicate if the product has variants
         product.has_variants = product.variants.filter(has_variants=True).exists()
-        
-        # Add a flag to indicate if the product has a standard variant (no color/size)
         product.has_standard_variant = has_standard_variant
-        
-        # Get all variants for the product to pass to the template
-        product.all_variants_data = list(product.variants.values('id', 'color', 'size', 'weight', 
-                                                               'is_luminous', 'unit_price', 'stock', 
-                                                               'has_variants'))
-        
+
+        # Keep existing variants data (not strictly needed now that we render inline)
+        product.all_variants_data = list(product.variants.values(
+            'id', 'color', 'size', 'weight', 'is_luminous', 'unit_price', 'bulk_price', 'stock', 'has_variants', 'image_url'
+        ))
+
         categories[product.category].append(product)
-    
+
+    # Sort categories and products alphabetically
+    sorted_categories = OrderedDict()
+    for cat in sorted(categories.keys(), key=lambda x: (x or '').lower()):
+        sorted_categories[cat] = sorted(categories[cat], key=lambda p: (p.name or '').lower())
+
     # Get cart count for the user
     cart_count = 0
     if hasattr(request.user, 'client'):
@@ -95,13 +97,13 @@ def catalog(request):
         cart = Cart.objects.filter(client=client).first()
         if cart:
             cart_count = cart.items.count()
-    
+
     context = {
-        'categories': categories,
+        'categories': sorted_categories,
         'products': products,
         'cart_count': cart_count,
     }
-    
+
     return render(request, 'landing/catalog.html', context)
 
 

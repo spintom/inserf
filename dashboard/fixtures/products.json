@@ -3,11 +3,11 @@
     "model": "core.product",
     "pk": 1,
     "fields": {
-      "name": "BIGBACKER WAGSHAD",
-      "description": "Taladro de alta potencia para uso profesional.",
-      "brand": "Jackall",
-      "category": "soft baits",
-      "image_url": "https://www.jackall.co.jp/saltwater/wp-content/uploads/sites/3/2012/12/BB_WAGSHAD_BLPK.png",
+      "name": "KIBIKIBI DART JIGHEAD",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
       "is_active": true
     }
   },
@@ -15,11 +15,383 @@
     "model": "core.product",
     "pk": 2,
     "fields": {
-      "name": "PEKERING TIDE MAX",
-      "description": "Esmeril para corte y desbaste de metales.",
-      "brand": "Jackall",
-      "category": "soft baits",
-      "image_url": "https://www.jackall.co.jp/saltwater/wp-content/uploads/sites/3/2012/12/fe1a51b9ed4ee4e6216515ad761d7dd6-2.png",
+      "name": "GOOD CATCH",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 3,
+    "fields": {
+      "name": "GOODMEAL CRAW1.5”",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 4,
+    "fields": {
+      "name": "GOOD MEAL SKINNY 1.5”",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 5,
+    "fields": {
+      "name": "GOOD MEAL SKINNY 2”",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 6,
+    "fields": {
+      "name": "GOOD MEAL HEAD/LIGHT 1.5g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 7,
+    "fields": {
+      "name": "GOOD MEAL HEAD/LIGHT 2.0g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 8,
+    "fields": {
+      "name": "GOOD MEAL HEAD/LIGHT 3.0g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 9,
+    "fields": {
+      "name": "GOODMEAL HEAD 2g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 10,
+    "fields": {
+      "name": "GOODMEAL HEAD 3.5g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 11,
+    "fields": {
+      "name": "GOODMEAL HEAD 5g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 12,
+    "fields": {
+      "name": "SUISUI SWIM JIGHEAD",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 13,
+    "fields": {
+      "name": "TIDE CURLY 2.0”",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 14,
+    "fields": {
+      "name": "TIDE CURLY 2.8”",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 15,
+    "fields": {
+      "name": "TIDE RING HEAD 5pcs",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 16,
+    "fields": {
+      "name": "NANOVIB1.0g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 17,
+    "fields": {
+      "name": "NANOVIB2.0g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 18,
+    "fields": {
+      "name": "NANOVIB3.0g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 19,
+    "fields": {
+      "name": "BIG BACKER FIT JIG 10g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 20,
+    "fields": {
+      "name": "BIG BACKER FIT JIG 15g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 21,
+    "fields": {
+      "name": "BIG BACKER FIT JIG 20g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 22,
+    "fields": {
+      "name": "BIG BACKER FIT JIG 5g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 23,
+    "fields": {
+      "name": "BIG BACKER FIT JIG 7g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 24,
+    "fields": {
+      "name": "BIG BACKER JIG 10g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 25,
+    "fields": {
+      "name": "BIG BACKER JIG 15g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 26,
+    "fields": {
+      "name": "BIG BACKER JIG 20g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 27,
+    "fields": {
+      "name": "BIG BACKER WAGSHAD 15g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 28,
+    "fields": {
+      "name": "BIG BACKER WAGSHAD 22g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 29,
+    "fields": {
+      "name": "BIG BACKER WAGSHAD 28g",
+      "description": "",
+      "brand": "",
+      "category": "Uncategorized",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 30,
+    "fields": {
+      "name": "BIG BACKER WANGAN MINNOW 128S-LB",
+      "description": "",
+      "brand": "",
+      "category": "MINNOW",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 31,
+    "fields": {
+      "name": "BIG BACKER WANGAN MINNOW 98S-LB",
+      "description": "",
+      "brand": "",
+      "category": "MINNOW",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 32,
+    "fields": {
+      "name": "PEKE RING TIDE MAX 2.2”",
+      "description": "",
+      "brand": "",
+      "category": "Soft baits",
+      "image_url": "",
+      "is_active": true
+    }
+  },
+  {
+    "model": "core.product",
+    "pk": 33,
+    "fields": {
+      "name": "PEKE RING TIDE MAX 2.7”",
+      "description": "",
+      "brand": "",
+      "category": "Soft baits",
+      "image_url": "",
       "is_active": true
     }
   }
