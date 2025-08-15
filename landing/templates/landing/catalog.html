@@ -55,14 +55,14 @@
           
           <div class="columns is-multiline">
             {% for product in products %}
-              <div class="column is-12 product-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+              <div class="column is-one-third-desktop is-half-tablet is-full-mobile product-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
                 <div class="card h-100">
                   <div class="card-image">
                     <figure class="image is-4by3">
                       {% if product.image_url %}
-                        <img src="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy">
+                        <img class="product-main-image" src="{{ product.image_url }}" data-default-image="{{ product.image_url }}" alt="{{ product.name }}" loading="lazy">
                       {% else %}
-                        <img src="{% static 'images/banner1.jpg' %}" alt="Imagen no disponible" loading="lazy">
+                        <img class="product-main-image" src="{% static 'images/banner1.jpg' %}" data-default-image="{% static 'images/banner1.jpg' %}" alt="Imagen no disponible" loading="lazy">
                       {% endif %}
                     </figure>
                   </div>
@@ -88,12 +88,17 @@
                     <!-- Variantes inline: Desktop table -->
                     <div class="mt-4 variant-list" aria-label="Variantes de {{ product.name }}">
                       {% if product.variants.all %}
-                        <div class="columns is-multiline is-variable is-2">
+                        <div class="variant-scroll" role="list" aria-label="Lista de variantes">
                           {% for variant in product.variants.all %}
-                            <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
-                              <div class="box variant-row {% if variant.stock == 0 %}has-background-light has-text-grey{% endif %}" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}">
+                            <div class="variant-item" role="listitem">
+                              <div class="box variant-row {% if variant.stock == 0 %}has-background-light has-text-grey{% endif %}" tabindex="0" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}" data-variant-image="{{ variant.image_url }}">
                                 <div class="is-flex is-justify-content-space-between is-align-items-flex-start">
                                   <div>
+                                    {% if variant.image_url %}
+                                      <figure class="image is-64x64 mb-2">
+                                        <img src="{{ variant.image_url }}" alt="{{ product.name }} miniatura {{ forloop.counter }}" loading="lazy" style="object-fit: cover;">
+                                      </figure>
+                                    {% endif %}
                                     <div class="mb-1">
                                       {% if variant.color %}
                                         <strong>{{ variant.color }}</strong>
@@ -162,6 +167,27 @@
   </div>
 </section>
 
+<style>
+  /* Horizontal scroller for variant sub-cards */
+  .variant-scroll {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scroll-snap-type: x proximity;
+  }
+  .variant-item {
+    flex: 0 0 auto;
+    min-width: 240px;
+    scroll-snap-align: start;
+  }
+  @media (min-width: 769px) {
+    .variant-item { min-width: 220px; }
+  }
+  .variant-row { cursor: pointer; }
+  .variant-row.is-selected { border-color: #3273dc; box-shadow: 0 0 0 1px #3273dc inset; }
+  .variant-row.has-background-light { cursor: not-allowed; }
+</style>
 <!-- Toaster container -->
 <div id="toaster" style="position: fixed; top: 80px; right: 16px; z-index: 2000; display: none;"></div>
 
