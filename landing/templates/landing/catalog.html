@@ -55,7 +55,7 @@
           
           <div class="columns is-multiline">
             {% for product in products %}
-              <div class="column is-one-quarter-desktop is-one-third-tablet product-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
+              <div class="column is-12 product-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:"100" }}">
                 <div class="card h-100">
                   <div class="card-image">
                     <figure class="image is-4by3">
@@ -88,47 +88,39 @@
                     <!-- Variantes inline: Desktop table -->
                     <div class="mt-4 variant-list" aria-label="Variantes de {{ product.name }}">
                       {% if product.variants.all %}
-                        <div class="is-hidden-mobile">
-                          <table class="table is-fullwidth is-striped is-narrow">
-                            <thead>
-                              <tr>
-                                <th>Color</th>
-                                <th>Tamaño</th>
-                                <th>Peso</th>
-                                <th>¿Luminoso?</th>
-                                <th>Stock</th>
-                                <th>Precio</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {% for variant in product.variants.all %}
-                                {% comment %} Hide or disable when stock 0 {% endcomment %}
-                                <tr class="variant-row {% if variant.stock == 0 %}has-text-grey-light{% endif %}" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}" >
-                                  <td>
-                                    {% if variant.color %}
-                                      <span>{{ variant.color }}</span>
-                                    {% else %}
-                                      <span class="has-text-grey">—</span>
-                                    {% endif %}
-                                  </td>
-                                  <td>{{ variant.size|default:'—' }}</td>
-                                  <td>{% if variant.weight %}{{ variant.weight }} g{% else %}—{% endif %}</td>
-                                  <td>{% if variant.is_luminous %}Sí{% else %}No{% endif %}</td>
-                                  <td>
-                                    {% if variant.stock > 0 %}
-                                      {{ variant.stock }}
-                                    {% else %}
-                                      <span class="tag is-light is-danger">Sin stock</span>
-                                    {% endif %}
-                                  </td>
-                                  <td>
-                                    <span>{{ variant.unit_price|clp }}</span>
-                                    {% if variant.bulk_price and variant.bulk_price|floatformat != '0' %}
-                                      <span class="has-text-grey is-size-7">(mayor: {{ variant.bulk_price|clp }})</span>
-                                    {% endif %}
-                                  </td>
-                                  <td class="has-text-right">
+                        <div class="columns is-multiline is-variable is-2">
+                          {% for variant in product.variants.all %}
+                            <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
+                              <div class="box variant-row {% if variant.stock == 0 %}has-background-light has-text-grey{% endif %}" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}">
+                                <div class="is-flex is-justify-content-space-between is-align-items-flex-start">
+                                  <div>
+                                    <div class="mb-1">
+                                      {% if variant.color %}
+                                        <strong>{{ variant.color }}</strong>
+                                      {% else %}
+                                        <strong>Estándar</strong>
+                                      {% endif %}
+                                    </div>
+                                    <div class="is-size-7 has-text-grey">
+                                      <span>{% if variant.size %}Tamaño: {{ variant.size }}{% else %}Tamaño: —{% endif %}</span>
+                                      <span class="ml-2">{% if variant.weight %}Peso: {{ variant.weight }} g{% else %}Peso: —{% endif %}</span>
+                                      <span class="ml-2">{% if variant.is_luminous %}Luminoso{% else %}No luminoso{% endif %}</span>
+                                    </div>
+                                    <div class="mt-1">
+                                      <span class="mr-2">{{ variant.unit_price|clp }}</span>
+                                      {% if variant.bulk_price and variant.bulk_price|floatformat != '0' %}
+                                        <span class="has-text-grey is-size-7">(mayor: {{ variant.bulk_price|clp }})</span>
+                                      {% endif %}
+                                    </div>
+                                    <div class="mt-1 is-size-7">
+                                      {% if variant.stock > 0 %}
+                                        Stock: {{ variant.stock }}
+                                      {% else %}
+                                        <span class="tag is-light is-danger">Sin stock</span>
+                                      {% endif %}
+                                    </div>
+                                  </div>
+                                  <div class="ml-3" style="min-width: 130px;">
                                     <div class="field has-addons is-justify-content-flex-end">
                                       <p class="control">
                                         <input class="input is-small qty-input" type="number" min="1" max="{{ variant.stock }}" value="1" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Cantidad {{ product.name }} {{ variant.color }} {{ variant.size }}">
@@ -136,59 +128,9 @@
                                       <p class="control">
                                         <button class="button is-small is-success add-variant-btn" data-variant-id="{{ variant.id }}" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Agregar {{ product.name }} {% if variant.color %}{{ variant.color }}{% endif %} {% if variant.size %}{{ variant.size }}{% endif %} al carrito">
                                           <span class="icon"><i class="fas fa-cart-plus"></i></span>
-                                          <span>Agregar</span>
                                         </button>
                                       </p>
                                     </div>
-                                  </td>
-                                </tr>
-                              {% endfor %}
-                            </tbody>
-                          </table>
-                        </div>
-
-                        <!-- Variantes inline: Mobile stacked -->
-                        <div class="is-hidden-tablet">
-                          {% for variant in product.variants.all %}
-                            <div class="box py-3 px-3 mb-2 {% if variant.stock == 0 %}has-background-light has-text-grey{% endif %} variant-row" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}">
-                              <div class="is-flex is-justify-content-space-between is-align-items-center">
-                                <div>
-                                  <div class="mb-1">
-                                    {% if variant.color %}
-                                      <strong>{{ variant.color }}</strong>
-                                    {% else %}
-                                      <strong>Estándar</strong>
-                                    {% endif %}
-                                  </div>
-                                  <div class="is-size-7 has-text-grey">
-                                    <span>{% if variant.size %}Tamaño: {{ variant.size }}{% else %}Tamaño: —{% endif %}</span>
-                                    <span class="ml-2">{% if variant.weight %}Peso: {{ variant.weight }} g{% else %}Peso: —{% endif %}</span>
-                                    <span class="ml-2">{% if variant.is_luminous %}Luminoso{% else %}No luminoso{% endif %}</span>
-                                  </div>
-                                  <div class="mt-1">
-                                    <span class="mr-2">{{ variant.unit_price|clp }}</span>
-                                    {% if variant.bulk_price and variant.bulk_price|floatformat != '0' %}
-                                      <span class="has-text-grey is-size-7">(mayor: {{ variant.bulk_price|clp }})</span>
-                                    {% endif %}
-                                  </div>
-                                  <div class="mt-1 is-size-7">
-                                    {% if variant.stock > 0 %}
-                                      Stock: {{ variant.stock }}
-                                    {% else %}
-                                      <span class="tag is-light is-danger">Sin stock</span>
-                                    {% endif %}
-                                  </div>
-                                </div>
-                                <div class="ml-3" style="min-width: 130px;">
-                                  <div class="field has-addons is-justify-content-flex-end">
-                                    <p class="control">
-                                      <input class="input is-small qty-input" type="number" min="1" max="{{ variant.stock }}" value="1" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Cantidad {{ product.name }} {{ variant.color }} {{ variant.size }}">
-                                    </p>
-                                    <p class="control">
-                                      <button class="button is-small is-success add-variant-btn" data-variant-id="{{ variant.id }}" {% if variant.stock == 0 %}disabled{% endif %} aria-label="Agregar {{ product.name }} {% if variant.color %}{{ variant.color }}{% endif %} {% if variant.size %}{{ variant.size }}{% endif %} al carrito">
-                                        <span class="icon"><i class="fas fa-cart-plus"></i></span>
-                                      </button>
-                                    </p>
                                   </div>
                                 </div>
                               </div>
