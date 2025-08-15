@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f980e5b-5de8-4858-9901-7dc918504500" name="Changes" comment="feat(landing): simplify product catalog layout and unify variant display&#10;&#10;- Replaced separate desktop table and mobile stacked views with a unified, responsive grid design for product variants.&#10;- Adjusted layout to improve alignment and consistency across devices.&#10;- Updated product item structure to ensure better accessibility and maintainability.">
+    <list default="true" id="2f980e5b-5de8-4858-9901-7dc918504500" name="Changes" comment="feat(landing): enable variant selection and dynamic image switching&#10;&#10;- Added JavaScript to allow seamless variant selection and update the main product image accordingly in `catalog.html`.&#10;- Included `image_url` field in `all_variants_data` for rendering variant-specific images.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/fixtures/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/fixtures/products.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/landing/templates/landing/catalog.html" beforeDir="false" afterPath="$PROJECT_DIR$/landing/templates/landing/catalog.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +40,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
     "git-widget-placeholder": "feature/releasev1",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "/Users/sdelgado/PycharmProjects/inserf",
@@ -125,7 +124,7 @@
       <option name="presentableId" value="Default" />
       <updated>1755219241591</updated>
       <workItem from="1755219242653" duration="567000" />
-      <workItem from="1755219832867" duration="5630000" />
+      <workItem from="1755219832867" duration="6271000" />
     </task>
     <task id="LOCAL-00001" summary="feat(admin): admin">
       <option name="closed" value="true" />
@@ -183,7 +182,23 @@
       <option name="project" value="LOCAL" />
       <updated>1755224582604</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat(landing): enhance product catalog with image handling and responsive layouts&#10;&#10;- Added `image_url` field to `ProductVariant` model to support dynamic image rendering.&#10;- Updated `catalog.html` template to display product and variant images conditionally.&#10;- Introduced a horizontal scroller for variant cards with improved accessibility.&#10;- Adjusted product grid to ensure better responsiveness across devices.&#10;- Updated fixtures to accurately categorize products.">
+      <option name="closed" value="true" />
+      <created>1755225544468</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1755225544468</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat(landing): enable variant selection and dynamic image switching&#10;&#10;- Added JavaScript to allow seamless variant selection and update the main product image accordingly in `catalog.html`.&#10;- Included `image_url` field in `all_variants_data` for rendering variant-specific images.">
+      <option name="closed" value="true" />
+      <created>1755225707529</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1755225707529</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +213,9 @@
     <MESSAGE value="feat(landing): add CLP currency filter and improve product catalog rendering&#10;&#10;- Introduced a new template tag `clp` to format numbers as Chilean Pesos with thousands separators.&#10;- Enhanced `catalog.html` to use the `clp` filter for displaying product and variant prices.&#10;- Improved accessibility and performance by adding `loading=&quot;lazy&quot;` to product images.&#10;- Refactored catalog layout for better responsive support and detailed variant display:&#10;  - Added desktop table and mobile stacked views for product variants.&#10;  - Displayed stock and bulk pricing where applicable.&#10;- Updated product search functionality to include variant data filtering.&#10;- Streamlined `dashboard/fixtures/products.json` to include additional placeholders and clean up data." />
     <MESSAGE value="feat(products): add product export HTML templates&#10;&#10;- Added `products.htm` and related folder containing `filelist.xml`, `sheet001.htm`, and other supporting files.&#10;- Templates support displaying product data, pricing, and availability in a structured HTML format.&#10;- Includes JavaScript for interactive frameset and tab navigation to enhance user experience." />
     <MESSAGE value="feat(landing): simplify product catalog layout and unify variant display&#10;&#10;- Replaced separate desktop table and mobile stacked views with a unified, responsive grid design for product variants.&#10;- Adjusted layout to improve alignment and consistency across devices.&#10;- Updated product item structure to ensure better accessibility and maintainability." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(landing): simplify product catalog layout and unify variant display&#10;&#10;- Replaced separate desktop table and mobile stacked views with a unified, responsive grid design for product variants.&#10;- Adjusted layout to improve alignment and consistency across devices.&#10;- Updated product item structure to ensure better accessibility and maintainability." />
+    <MESSAGE value="feat(landing): enhance product catalog with image handling and responsive layouts&#10;&#10;- Added `image_url` field to `ProductVariant` model to support dynamic image rendering.&#10;- Updated `catalog.html` template to display product and variant images conditionally.&#10;- Introduced a horizontal scroller for variant cards with improved accessibility.&#10;- Adjusted product grid to ensure better responsiveness across devices.&#10;- Updated fixtures to accurately categorize products." />
+    <MESSAGE value="feat(landing): enable variant selection and dynamic image switching&#10;&#10;- Added JavaScript to allow seamless variant selection and update the main product image accordingly in `catalog.html`.&#10;- Included `image_url` field in `all_variants_data` for rendering variant-specific images." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(landing): enable variant selection and dynamic image switching&#10;&#10;- Added JavaScript to allow seamless variant selection and update the main product image accordingly in `catalog.html`.&#10;- Included `image_url` field in `all_variants_data` for rendering variant-specific images." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/inserf$manage.coverage" NAME="manage Coverage Results" MODIFIED="1755220363189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
