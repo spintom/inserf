@@ -91,7 +91,7 @@
                         <div class="columns is-multiline is-variable is-2" role="list" aria-label="Lista de variantes">
                           {% for variant in product.variants.all %}
                             <div class="column is-half-desktop is-half-tablet is-full-mobile" role="listitem">
-                              <div class="box variant-row {% if variant.stock == 0 %}has-background-light has-text-grey{% endif %}" tabindex="0" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}" data-variant-image="{{ variant.image_url }}">
+                              <div class="box variant-row {% if variant.stock == 0 %}has-background-light has-text-grey{% endif %}" tabindex="0" data-variant-text="{{ variant.color }} {{ variant.size }} {{ variant.weight }} {% if variant.is_luminous %}luminoso{% endif %} {{ variant.unit_price }} {{ variant.bulk_price }}" data-variant-image="{{ variant.image_url }}" data-variant-color="{{ variant.color }}">
                                 <div class="is-flex is-justify-content-space-between is-align-items-flex-start">
                                   <div>
                                     {% if variant.image_url %}
@@ -210,6 +210,17 @@
     }
   }
 
+  // Builds a placeholder image (SVG) using the variant color name
+  function buildVariantPlaceholder(text) {
+    try {
+      const label = (text || 'Variante').toString();
+      const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'>\n  <defs>\n    <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>\n      <stop offset='0%' stop-color='#dde6f7'/>\n      <stop offset='100%' stop-color='#c7d2fe'/>\n    </linearGradient>\n  </defs>\n  <rect width='100%' height='100%' fill='url(#g)'/>\n  <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='48' fill='#1f2937'>${label}</text>\n</svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    } catch (e) {
+      return '';
+    }
+  }
+
   async function addVariantToCart(variantId, quantity) {
     try {
       const response = await fetch('{% url "landing:add_to_cart" %}', {
@@ -264,8 +275,21 @@
       card.querySelectorAll('.variant-row').forEach(row => {
         const activate = () => {
           if (row.classList.contains('has-background-light')) return; // ignore out of stock
-          const imgUrl = row.getAttribute('data-variant-image') || defaultSrc;
-          if (imgUrl) mainImg.setAttribute('src', imgUrl);
+          const imgRaw = (row.getAttribute('data-variant-image') || '').trim();
+          const color = (row.getAttribute('data-variant-color') || '').trim();
+          let nextSrc = imgRaw;
+          if (!nextSrc && color) {
+            nextSrc = buildVariantPlaceholder(color);
+          }
+          if (!nextSrc) {
+            nextSrc = defaultSrc;
+          }
+          if (nextSrc) {
+            mainImg.setAttribute('src', nextSrc);
+            const productName = (card.querySelector('.title.is-5')?.textContent || '').trim();
+            const alt = productName ? productName + (color ? ' - ' + color : '') : (color || mainImg.getAttribute('alt') || '');
+            if (alt) mainImg.setAttribute('alt', alt);
+          }
           card.querySelectorAll('.variant-row.is-selected').forEach(r => { if (r !== row) r.classList.remove('is-selected'); });
           row.classList.add('is-selected');
         };
